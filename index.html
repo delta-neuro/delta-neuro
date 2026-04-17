@@ -3,109 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delta Neuro</title>
+    <title>Delta Neuro Lab | RIT</title>
     <style>
-        /* General Page Styling */
+        /* CSS Variables for Easy Light/Dark Toggling */
+        :root {
+            /* Default Dark Mode Colors */
+            --bg-color: #111111;
+            --text-main: #ffffff;
+            --text-secondary: #cccccc;
+            --rit-orange: #F76902;
+            --nav-bg: #000000;
+            --border-color: #333333;
+        }
+
+        /* Light Mode Colors (Applied when button is clicked) */
+        body.light-mode {
+            --bg-color: #ffffff;
+            --text-main: #222222;
+            --text-secondary: #555555;
+            --nav-bg: #f8f9fa;
+            --border-color: #e5e7eb;
+        }
+
         body {
             margin: 0;
-            padding: 0;
-            background-color: #0b0f19; /* Deep, dark tech vibe */
-            color: #e0e6ed;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Classic Academic Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            gap: 2rem;
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s;
+        }
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: var(--rit-orange);
+        }
+        .github-link {
+            color: var(--rit-orange);
+            font-weight: bold;
+        }
+
+        /* Theme Toggle Button */
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .theme-btn:hover {
+            border-color: var(--rit-orange);
+            color: var(--rit-orange);
+        }
+
+        /* Clean, Serene Center Area */
+        .main-content {
+            height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            padding: 0 20px;
         }
 
-        /* The Box Holding the Content */
-        .hero-container {
+        .split-container {
             display: flex;
-            align-items: center;
+            gap: 40px;
             max-width: 900px;
-            padding: 50px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            gap: 50px; /* Space between logo and text */
+            width: 100%;
+            align-items: center;
         }
 
-        /* Left Column: Logo */
-        .logo-section {
-            flex: 0 0 180px; /* Locks the logo width so it never zooms in too much */
+        /* The Two Halves */
+        .left-box, .right-box {
+            flex: 1;
             display: flex;
+            flex-direction: column;
             justify-content: center;
         }
 
-        /* Styling for the placeholder Delta SVG */
-        .logo-section svg {
-            width: 100%;
+        /* Left Side: Logo */
+        .left-box {
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .lab-logo {
+            max-width: 200px; /* Adjust this number to make your image bigger or smaller */
             height: auto;
-            fill: none;
-            stroke: #4facfe; /* High-tech blue */
-            stroke-width: 6;
-            stroke-linejoin: round;
-            filter: drop-shadow(0 0 12px rgba(79, 172, 254, 0.6));
-        }
-
-        /* If you replace the SVG with your own image, this keeps it sized properly */
-        .logo-section img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Right Column: Text */
-        .text-section {
-            flex: 1;
-        }
-
-        .text-section h1 {
-            margin-top: 0;
             margin-bottom: 15px;
-            font-size: 2.5rem;
-            color: #ffffff;
+        }
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-main);
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .text-section p {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            color: #a0aec0;
-            margin: 0;
+        /* Right Side: Academic Description */
+        .right-box {
+            padding-left: 40px;
+            border-left: 2px solid var(--rit-orange); /* Classic academic visual divider */
         }
-
-        /* Mobile responsiveness (stacks logo on top of text on small screens) */
-        @media (max-width: 768px) {
-            .hero-container {
-                flex-direction: column;
-                text-align: center;
-                padding: 30px;
-            }
-            .logo-section {
-                flex: 0 0 auto;
-                width: 120px;
-            }
+        .right-box p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin: 0; 
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-container">
-        <div class="logo-section">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="50,15 15,85 85,85" />
-            </svg>
-        </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Our Team</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="join.html">Join Us</a>
+        <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
+        <button id="theme-btn" class="theme-btn" aria-label="Switch to light mode" onclick="toggleTheme()">🌙</button>
+    </nav>
 
-        <div class="text-section">
-            <h1>Delta Neuro</h1>
-            <p>
-                <strong>Delta</strong> is the symbol for change—the shift in neural signals that marks the transition from health to pathology. It is the rhythmic Delta wave of deep restorative sleep and the Delta rule of AI error learning. Delta Neuro maps these fundamental transformations to decode the brain and bridge the gap between biological intelligence and digital innovation.
-            </p>
+    <div class="main-content">
+        <div class="split-container">
+            
+            <div class="left-box">
+                <img src="images/deltaneuro_yaxis.gif" alt="Delta Neuro Logo" class="lab-logo">
+                <div class="logo-text">Delta Neuro</div>
+            </div>
+
+            <div class="right-box">
+                <p id="dynamic-text">Loading content...</p>
+            </div>
+
         </div>
     </div>
+
+    <script>
+        function updateThemeButton() {
+            const button = document.getElementById('theme-btn');
+            const isLightMode = document.body.classList.contains('light-mode');
+            button.textContent = isLightMode ? '☀️' : '🌙';
+            button.setAttribute('aria-label', isLightMode ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            updateThemeButton();
+        }
+
+        async function loadHomepageText() {
+            try {
+                const response = await fetch('text_content/homepage.txt');
+                if (!response.ok) throw new Error('Text file not found');
+                const text = await response.text();
+                document.getElementById('dynamic-text').textContent = text;
+            } catch (error) {
+                const message = window.location.protocol === 'file:'
+                    ? 'Unable to load text from local file. Please serve the page over HTTP or use a local server.'
+                    : 'Unable to load text.';
+                document.getElementById('dynamic-text').textContent = message;
+                console.error('Homepage text load error:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateThemeButton();
+            loadHomepageText();
+        });
+    </script>
 
 </body>
 </html>
