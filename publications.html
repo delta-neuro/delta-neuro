@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Neuro Lab | Publications</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #111111;
+            --text-secondary: #5f6368;
+            --rit-orange: #F76902;
+            --nav-bg: #ffffff;
+            --nav-text: #111111;
+            --surface: #ffffff;
+            --border-color: #e5e7eb;
+            --tag-bg: #F76902;
+            --tag-text: #ffffff;
+            --highlight-bg: rgba(247, 105, 2, 0.14);
+        }
+
+        body.dark-mode {
+            --bg-color: #111111;
+            --text-main: #f2f2f2;
+            --text-secondary: #bdbdbd;
+            --nav-bg: #000000;
+            --nav-text: #ffffff;
+            --surface: #1a1a1a;
+            --border-color: #333333;
+            --tag-bg: #fb923c;
+            --highlight-bg: rgba(247, 105, 2, 0.18);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+        nav a {
+            color: var(--nav-text);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.88rem;
+            transition: color 0.2s;
+        }
+        nav a:hover,
+        nav a[aria-current="page"] {
+            color: var(--rit-orange);
+        }
+        .theme-btn {
+            border: 1px solid var(--border-color);
+            background: transparent;
+            padding: 0.65rem 0.9rem;
+            border-radius: 0.65rem;
+            cursor: pointer;
+            color: var(--nav-text);
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .theme-btn:hover {
+            background-color: rgba(247, 105, 2, 0.08);
+        }
+
+        .page {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+        .page-header {
+            margin-bottom: 1.75rem;
+        }
+        .page-header h1 {
+            margin: 0;
+            font-size: clamp(2rem, 2.5vw, 2.9rem);
+            letter-spacing: -0.03em;
+            text-transform: lowercase;
+            font-weight: 700;
+        }
+        .page-header p {
+            margin: 0.75rem 0 0;
+            max-width: 720px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(140px, 210px) minmax(0, 1fr);
+            gap: 2rem;
+        }
+
+        .timeline {
+            position: sticky;
+            top: 1.5rem;
+            align-self: start;
+            padding: 1rem 0.75rem;
+            border-radius: 1rem;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            min-width: 160px;
+        }
+        .timeline h2 {
+            margin: 0 0 1rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+        .year-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 0.55rem;
+        }
+        .year-item {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            padding: 0.55rem 0.75rem;
+            border-radius: 0.65rem;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .year-item:first-child {
+            color: var(--rit-orange);
+            font-weight: 700;
+            background: rgba(247, 105, 2, 0.12);
+        }
+
+        .content {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 740px;
+        }
+        .filter-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .filter-box label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .filter-box input {
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid var(--border-color);
+            border-radius: 0.85rem;
+            padding: 0.9rem 1rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            background: var(--surface);
+        }
+        .filter-box input:focus {
+            outline: none;
+            border-color: var(--rit-orange);
+            box-shadow: 0 0 0 4px rgba(247, 105, 2, 0.08);
+        }
+
+        .entries {
+            display: grid;
+            gap: 1.6rem;
+        }
+        .entry {
+            display: grid;
+            gap: 0.9rem;
+            padding: 1.4rem 1.45rem;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 1.1rem;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .entry:hover {
+            border-color: rgba(247, 105, 2, 0.45);
+            transform: translateY(-1px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+        }
+        .entry-tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            width: fit-content;
+        }
+        .entry-title {
+            margin: 0;
+            font-size: 1.1rem;
+            line-height: 1.45;
+            font-weight: 700;
+        }
+        .entry-title .highlight {
+            display: inline-block;
+            background: var(--highlight-bg);
+            padding: 0.12rem 0.28rem;
+            border-radius: 0.35rem;
+        }
+        .entry-meta {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .entry-meta .journal {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        .entry-year {
+            margin-top: 0.45rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+        .entry-subtext {
+            margin: 0.35rem 0 0;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 980px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+            .timeline {
+                position: relative;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                margin-bottom: 1.5rem;
+            }
+        }
+        @media (max-width: 680px) {
+            nav {
+                justify-content: space-between;
+                padding: 1rem;
+            }
+            .page {
+                padding: 1.5rem 1rem 2.2rem;
+            }
+            .filter-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .filter-box input {
+                max-width: 100%;
+            }
+        }
+    </style>
+    <script defer src="theme.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Our Team</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html" aria-current="page">Publications</a>
+        <a href="news.html">News</a>
+        <a href="join.html">Join Us</a>
+        <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
+        <button id="theme-btn" class="theme-btn" aria-label="Switch to dark mode">🌙</button>
+    </nav>
+
+    <main class="page">
+        <header class="page-header">
+            <h1>publications</h1>
+            <p>Publications are organized in reverse chronological order. Use the year timeline and topic tags to scan the list quickly.</p>
+        </header>
+
+        <div class="layout">
+            <aside class="timeline">
+                <h2>Year</h2>
+                <ul class="year-list">
+                    <li class="year-item">2026</li>
+                    <li class="year-item">2025</li>
+                    <li class="year-item">2024</li>
+                    <li class="year-item">2023</li>
+                    <li class="year-item">2022</li>
+                    <li class="year-item">2021</li>
+                    <li class="year-item">2020</li>
+                    <li class="year-item">2019</li>
+                    <li class="year-item">2018</li>
+                    <li class="year-item">2017</li>
+                    <li class="year-item">2016</li>
+                </ul>
+            </aside>
+
+            <section class="content">
+                <div class="filter-box">
+                    <label for="filter-input">Type to filter</label>
+                    <input id="filter-input" type="search" placeholder="Type to filter" aria-label="Type to filter publications">
+                </div>
+
+                <div class="entries" id="publication-list">
+                    <article class="entry" data-keywords="under review epilepsy journal">
+                        <span class="entry-tag">Under Review</span>
+                        <h2 class="entry-title"><span class="highlight">Thalamic Interictal Epileptic and Non-Epileptic Events during NREM Sleep in Patients with Focal Epilepsy</span></h2>
+                        <p class="entry-meta">Hongyi Ye, Kassem Jaber, Alyssa Ho, Lingqi Ye, and 14 more authors</p>
+                        <p class="entry-meta journal">Manuscript under review</p>
+                        <p class="entry-year">2025</p>
+                    </article>
+
+                    <article class="entry" data-keywords="under review epilepsy seizure journal">
+                        <span class="entry-tag">Under Review</span>
+                        <h2 class="entry-title"><span class="highlight">Thalamo-cortical Spectral Resonance Shapes Seizure Expression in Temporal Lobe Epilepsy</span></h2>
+                        <p class="entry-meta">Thandar* Aung, Jian Li, Tipakorn Tumrark, Chandana Belly, and 7 more authors</p>
+                        <p class="entry-meta journal">Under Review, 2025</p>
+                        <p class="entry-year">2025</p>
+                    </article>
+
+                    <article class="entry" data-keywords="case study epilepsy surgery journal">
+                        <span class="entry-tag">Epileptic Disorders</span>
+                        <h2 class="entry-title"><span class="highlight">Reduction of Interictal Epileptic Burden by Pulsatile Corticoid Therapy in Children with Drug-Resistant Epilepsy—How Stable is the Effect?</span></h2>
+                        <p class="entry-meta">Karin Schiller, Tali Avigdor, John* Thomas, Daniel Mansilla, and 6 more authors</p>
+                        <p class="entry-meta journal">Epileptic Disorders, 2025</p>
+                        <p class="entry-year">2025</p>
+                    </article>
+
+                    <article class="entry" data-keywords="journal epilepsy spindles slow waves">
+                        <span class="entry-tag">Epilepsia</span>
+                        <h2 class="entry-title"><span class="highlight">Widespread Decoupling of Spindles and Slow Waves in Temporal Lobe Epilepsy</span></h2>
+                        <p class="entry-meta">Karin Schiller, Nicolás Ellenrieder, Daniel Mansilla, Chifaou Abdallah, and 6 more authors</p>
+                        <p class="entry-meta journal">Epilepsia, 2025</p>
+                        <p class="entry-year">2025</p>
+                    </article>
+
+                    <article class="entry" data-keywords="journal annals neuroscience multicenter study">
+                        <span class="entry-tag">Annals of Neurology</span>
+                        <h2 class="entry-title"><span class="highlight">Visual Features in Stereo-Electroencephalography to Predict Surgical Outcome: A Multicenter Study</span></h2>
+                        <p class="entry-meta">Chifaou Abdallah, John* Thomas, Olivier Aron, Tali Avigdor, and 7 more authors</p>
+                        <p class="entry-meta journal">Annals of Neurology, 2025</p>
+                        <p class="entry-year">2025</p>
+                    </article>
+
+                    <article class="entry" data-keywords="journal neural engineering clinical decision epilepsy surgery">
+                        <span class="entry-tag">Journal of Neural Engineering</span>
+                        <h2 class="entry-title"><span class="highlight">Development of a Seizure Matching System for Clinical Decision Making in Epilepsy Surgery</span></h2>
+                        <p class="entry-meta">John* Thomas, Chifaou Abdallah, Kassem Jaber, Olivier Aron, and 7 more authors</p>
+                        <p class="entry-meta journal">Journal of Neural Engineering, 2024</p>
+                        <p class="entry-year">2024</p>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function applyTheme(theme) {
+            const isDark = theme === 'dark';
+            document.body.classList.toggle('dark-mode', isDark);
+            document.querySelectorAll('#theme-btn').forEach(button => {
+                button.textContent = isDark ? '☀️' : '🌙';
+                button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+            });
+        }
+
+        function loadThemePreference() {
+            const savedTheme = localStorage.getItem('delta-neuro-theme');
+            if (savedTheme === 'dark' || savedTheme === 'light') {
+                return savedTheme;
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function setTheme(theme) {
+            localStorage.setItem('delta-neuro-theme', theme);
+            applyTheme(theme);
+        }
+
+        function toggleTheme() {
+            const isDark = document.body.classList.contains('dark-mode');
+            setTheme(isDark ? 'light' : 'dark');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTheme(loadThemePreference());
+            document.querySelectorAll('#theme-btn').forEach(button => button.addEventListener('click', toggleTheme));
+
+            const filterInput = document.getElementById('filter-input');
+            const entries = Array.from(document.querySelectorAll('.entry'));
+            filterInput.addEventListener('input', () => {
+                const query = filterInput.value.trim().toLowerCase();
+                entries.forEach(entry => {
+                    const keywords = entry.dataset.keywords.toLowerCase();
+                    const title = entry.querySelector('.entry-title').textContent.toLowerCase();
+                    const visible = !query || keywords.includes(query) || title.includes(query);
+                    entry.style.display = visible ? 'grid' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
