@@ -136,6 +136,54 @@
             color: var(--text-secondary);
             margin: 0; 
         }
+
+        @media (max-width: 900px) {
+            .main-content {
+                height: auto;
+                padding: 2rem 1rem;
+            }
+            .split-container {
+                display: block;
+                gap: 1.5rem;
+            }
+            .right-box {
+                padding-left: 0;
+                border-left: none;
+            }
+            .left-box {
+                padding: 0;
+            }
+            .logo-text {
+                font-size: 1.6rem;
+            }
+            .right-box p {
+                font-size: 1.15rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                justify-content: space-between;
+                gap: 0.75rem;
+                padding: 1rem;
+            }
+            nav a,
+            .theme-btn {
+                font-size: 0.8rem;
+            }
+            .theme-btn {
+                padding: 0.5rem 0.85rem;
+            }
+            .main-content {
+                padding: 1.5rem 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.4rem;
+            }
+            .right-box p {
+                font-size: 1rem;
+            }
+        }
     </style>
     <script defer src="theme.js"></script>
 </head>

@@ -149,6 +149,30 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        @media (max-width: 660px) {
+            .page-shell {
+                width: calc(100% - 1.25rem);
+                margin: 1.5rem auto 3rem;
+            }
+            .person-copy {
+                padding: 1.5rem;
+            }
+            .person-copy h1 {
+                font-size: 2.2rem;
+            }
+            .person-copy .details {
+                padding: 1.25rem;
+            }
+            nav {
+                justify-content: center;
+                gap: 0.75rem;
+            }
+            nav a,
+            .theme-btn {
+                font-size: 0.85rem;
+            }
+        }
     </style>
     <script defer src="../theme.js"></script>
 </head>
