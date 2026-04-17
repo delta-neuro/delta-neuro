@@ -1,0 +1,16 @@
+banner=Join a team dedicated to advancing scientific innovations to improve the lives of people affected by brain disorders.
+postdoc=We currently do not have funding to hire a new postdoc. We welcome candidates passionate about computational and clinical neuroscience. Please email the lab with your CV and research statement to discuss fellowship or visiting opportunities.
+phd=We are seeking PhD students to start in Fall 2026 through the RIT PhD program. Strong applicants should have experience in machine learning, neuroscience, or sleep science.
+masters=We currently do not have funding to hire a new Master's student. We welcome Master's students who have been accepted to RIT or related programs. Please email the lab with your CV and research statement if you are looking for a lab to join.
+undergrad=Recruitment closed: undergraduate volunteer positions have been filled.
+open_intro=Join our team and lead the future of Delta Neuro Lab. We're always looking for highly motivated individuals who share our passion for scientific discovery and methodological innovation.
+open1_title=Undergrad Volunteers (only RIT) - CLOSED
+open1_meta=RIT, In Person  Part-time
+open1_desc=Join our lab as an undergraduate volunteer to gain hands-on experience in computational neuroscience and neurotechnology.
+open2_title=Master's Student (only RIT)
+open2_meta=RIT, In Person  Full-time
+open2_desc=Join our lab as a Masters student to lead innovative research projects in human-centered neurotechnology.
+open3_title=PhD Students
+open3_meta=RIT, In Person  Full-time
+open3_desc=Join our lab as a PhD student to lead research projects that bridge AI, neuroscience, and sleep dynamics.
+position_image_caption=Join our amazing team!

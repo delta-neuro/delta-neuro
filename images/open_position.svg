@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360">
+  <rect width="600" height="360" rx="30" fill="#ffffff" stroke="#F76902" stroke-width="10" />
+  <rect x="40" y="40" width="220" height="220" rx="26" fill="#F76902" />
+  <rect x="320" y="80" width="180" height="180" rx="26" fill="#111111" opacity="0.12" />
+  <path d="M140 120h120" stroke="#ffffff" stroke-width="16" stroke-linecap="round" />
+  <path d="M140 170h120" stroke="#ffffff" stroke-width="16" stroke-linecap="round" />
+  <path d="M140 220h80" stroke="#ffffff" stroke-width="16" stroke-linecap="round" />
+  <circle cx="410" cy="220" r="36" fill="#F76902" />
+  <circle cx="410" cy="220" r="22" fill="#ffffff" />
+  <text x="300" y="310" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#111111">Open Roles</text>
+</svg>

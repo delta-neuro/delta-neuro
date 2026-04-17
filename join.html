@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us | Delta Neuro Lab</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #111111;
+            --muted: #4f4f4f;
+            --accent: #F76902;
+            --nav-bg: #000000;
+            --nav-text: #ffffff;
+            --surface: #f7f7f7;
+            --border: rgba(247, 105, 2, 0.22);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1rem;
+            background: var(--nav-bg);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav a,
+        .theme-btn {
+            color: var(--nav-text);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.7px;
+            font-size: 0.92rem;
+        }
+
+        .github-link {
+            color: var(--accent);
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 9999px;
+            padding: 0.55rem 0.95rem;
+            cursor: pointer;
+        }
+
+        .page-shell {
+            width: min(1200px, calc(100% - 2rem));
+            margin: 0 auto 4rem;
+            padding: 0;
+        }
+
+        .hero-banner {
+            background: #000000;
+            color: #ffffff;
+            border-radius: 24px;
+            padding: 4.5rem 2rem 3rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .hero-banner h1 {
+            margin: 0;
+            font-size: clamp(3rem, 5vw, 4.25rem);
+            letter-spacing: -0.05em;
+            line-height: 1.02;
+        }
+
+        .hero-banner p {
+            margin: 1.25rem auto 0;
+            max-width: 760px;
+            color: rgba(255,255,255,0.78);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .section-block {
+            margin-top: 3rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+        }
+
+        .section-header p {
+            margin: 0;
+            color: var(--muted);
+            max-width: 720px;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .positions-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .position-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .position-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: #000;
+            color: #fff;
+            flex-shrink: 0;
+            font-size: 1.15rem;
+        }
+
+        .position-item h3 {
+            margin: 0 0 0.35rem;
+            font-size: 1.05rem;
+        }
+
+        .position-item p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .position-image-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.5rem;
+            min-height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .position-image-card .image-box {
+            width: 100%;
+            height: 340px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .position-image-card .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .position-image-card .image-caption {
+            margin-top: 1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .open-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .open-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.75rem;
+        }
+
+        .open-card {
+            background: #ffffff;
+            border-radius: 22px;
+            border: 1px solid rgba(17, 17, 17, 0.08);
+            padding: 1.5rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        .open-card h3 {
+            margin: 0 0 0.65rem;
+            font-size: 1.05rem;
+        }
+
+        .open-card .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            margin-bottom: 1rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .open-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 860px) {
+            .positions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .position-image-card {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Our Team</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="join.html" class="github-link">Join Us</a>
+        <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
+        <button id="theme-btn" class="theme-btn" aria-label="Switch to light mode">🌙</button>
+    </nav>
+
+    <main class="page-shell">
+        <section class="hero-banner">
+            <h1>Join Our Lab</h1>
+            <p id="banner-text">Loading page content...</p>
+        </section>
+
+        <section class="section-block">
+            <div class="section-header">
+                <div>
+                    <h2>Positions</h2>
+                </div>
+            </div>
+
+            <div class="positions-grid">
+                <div>
+                    <article class="position-item">
+                        <div class="position-icon">P</div>
+                        <div>
+                            <h3>Postdoctoral Researchers</h3>
+                            <p id="postdoc-text"></p>
+                        </div>
+                    </article>
+
+                    <article class="position-item">
+                        <div class="position-icon">D</div>
+                        <div>
+                            <h3>PhD Students</h3>
+                            <p id="phd-text"></p>
+                        </div>
+                    </article>
+
+                    <article class="position-item">
+                        <div class="position-icon">M</div>
+                        <div>
+                            <h3>Master's Students</h3>
+                            <p id="masters-text"></p>
+                        </div>
+                    </article>
+
+                    <article class="position-item">
+                        <div class="position-icon">U</div>
+                        <div>
+                            <h3>Undergraduate Students</h3>
+                            <p id="undergrad-text"></p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="position-image-card">
+                    <div class="image-box">
+                        <img src="images/join_team.svg" alt="Join our amazing team illustration">
+                    </div>
+                    <div class="image-caption" id="position-image-caption">Join our amazing team!</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="open-section">
+            <div class="section-header">
+                <div>
+                    <h2>Open Positions</h2>
+                    <p id="open-intro"></p>
+                </div>
+            </div>
+
+            <div class="open-cards">
+                    <article class="open-card">
+                    <img src="images/open_position.svg" alt="Open position illustration">
+                    <h3 id="open1-title"></h3>
+                    <div class="meta" id="open1-meta"></div>
+                    <p id="open1-desc"></p>
+                </article>
+
+                <article class="open-card">
+                    <img src="images/open_position.svg" alt="Open position illustration">
+                    <h3 id="open2-title"></h3>
+                    <div class="meta" id="open2-meta"></div>
+                    <p id="open2-desc"></p>
+                </article>
+
+                <article class="open-card">
+                    <img src="images/open_position.svg" alt="Open position illustration">
+                    <h3 id="open3-title"></h3>
+                    <div class="meta" id="open3-meta"></div>
+                    <p id="open3-desc"></p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const themeButton = document.getElementById('theme-btn');
+        const contentMap = {
+            banner: 'banner-text',
+            postdoc: 'postdoc-text',
+            phd: 'phd-text',
+            masters: 'masters-text',
+            undergrad: 'undergrad-text',
+            open_intro: 'open-intro',
+            open1_title: 'open1-title',
+            open1_meta: 'open1-meta',
+            open1_desc: 'open1-desc',
+            open2_title: 'open2-title',
+            open2_meta: 'open2-meta',
+            open2_desc: 'open2-desc',
+            open3_title: 'open3-title',
+            open3_meta: 'open3-meta',
+            open3_desc: 'open3-desc',
+            position_image_caption: 'position-image-caption'
+        };
+
+        function updateThemeButton() {
+            const isLight = document.body.classList.contains('light-mode');
+            themeButton.textContent = isLight ? '☀️' : '🌙';
+            themeButton.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            updateThemeButton();
+        }
+
+        function parseContent(text) {
+            const data = {};
+            text.split('\n').forEach(line => {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed.startsWith('#')) return;
+                const [key, ...rest] = trimmed.split('=');
+                if (!key) return;
+                data[key.trim()] = rest.join('=').trim();
+            });
+            return data;
+        }
+
+        async function loadJoinText() {
+            try {
+                const response = await fetch('text_content/join_us.txt');
+                if (!response.ok) throw new Error('Text file not found');
+                const text = await response.text();
+                const content = parseContent(text);
+                Object.entries(contentMap).forEach(([sourceKey, elementId]) => {
+                    const element = document.getElementById(elementId);
+                    if (element && content[sourceKey]) {
+                        element.textContent = content[sourceKey];
+                    }
+                });
+            } catch (error) {
+                const message = window.location.protocol === 'file:'
+                    ? 'Unable to load text from local file. Please serve the page over HTTP or use a local server.'
+                    : 'Unable to load text.';
+                document.getElementById('banner-text').textContent = message;
+                console.error('Join Us text load error:', error);
+            }
+        }
+
+        themeButton.addEventListener('click', toggleTheme);
+        document.addEventListener('DOMContentLoaded', () => {
+            updateThemeButton();
+            loadJoinText();
+        });
+    </script>
+</body>
+</html>

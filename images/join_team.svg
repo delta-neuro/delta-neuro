@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360">
+  <rect width="600" height="360" rx="30" fill="#111111" />
+  <rect x="40" y="40" width="180" height="180" rx="24" fill="#F76902" />
+  <rect x="220" y="100" width="180" height="180" rx="24" fill="#ffffff" opacity="0.1" />
+  <rect x="400" y="60" width="160" height="220" rx="24" fill="#ffffff" opacity="0.08" />
+  <circle cx="130" cy="135" r="30" fill="#ffffff" opacity="0.32" />
+  <circle cx="330" cy="175" r="28" fill="#ffffff" opacity="0.3" />
+  <circle cx="480" cy="130" r="24" fill="#ffffff" opacity="0.26" />
+  <path d="M92 250c0-20 18-36 40-36h160c22 0 40 16 40 36v12H92v-12z" fill="#ffffff" opacity="0.22" />
+  <path d="M360 260c0-18 16-32 36-32h120c20 0 36 14 36 32v10H360v-10z" fill="#ffffff" opacity="0.18" />
+  <text x="50%" y="320" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#ffffff" opacity="0.8">Delta Neuro Team</text>
+</svg>
