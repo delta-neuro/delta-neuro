@@ -9,6 +9,7 @@
             --bg: #ffffff;
             --surface: #f6f6f6;
             --nav: #000000;
+            --nav-text: #ffffff;
             --text: #111111;
             --muted: #4f4f4f;
             --accent: #F76902;
@@ -23,9 +24,33 @@
             color: var(--text);
         }
 
-        body.light-mode {
-            background: #f8f8f8;
-            color: #111111;
+        body.dark-mode {
+            background: #111111;
+            color: #f2f2f2;
+        }
+
+        body.dark-mode nav {
+            background: #000000;
+        }
+
+        body.dark-mode .search-panel,
+        body.dark-mode .person-card,
+        body.dark-mode .filter-menu,
+        body.dark-mode .person-meta,
+        body.dark-mode .section-heading,
+        body.dark-mode .section-description {
+            background: #1a1a1a;
+            color: #e5e5e5;
+        }
+
+        body.dark-mode .person-card {
+            border-color: rgba(255,255,255,0.08);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+        }
+
+        body.dark-mode .person-meta p,
+        body.dark-mode .search-note {
+            color: #bdbdbd;
         }
 
         nav {
@@ -41,11 +66,19 @@
 
         nav a,
         .theme-btn {
-            color: #ffffff;
+            color: var(--nav-text);
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 0.7px;
             font-size: 0.92rem;
+        }
+
+        nav a[aria-current="page"] {
+            color: var(--accent);
+        }
+
+        nav a[aria-current="page"] {
+            color: var(--accent);
         }
 
         .github-link {
@@ -144,6 +177,10 @@
             outline: none;
         }
 
+        .filter-group {
+            position: relative;
+        }
+
         .search-row button {
             border: 1px solid rgba(17,17,17,0.12);
             border-radius: 14px;
@@ -152,6 +189,42 @@
             color: var(--text);
             cursor: pointer;
             font-weight: 700;
+        }
+
+        .filter-menu {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 0.6rem);
+            width: min(220px, 260px);
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 18px 42px rgba(0,0,0,0.12);
+            padding: 0.5rem;
+            display: none;
+            z-index: 10;
+        }
+
+        .filter-menu.show {
+            display: grid;
+        }
+
+        .filter-option {
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem 0.9rem;
+            font-size: 0.95rem;
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 14px;
+        }
+
+        .filter-option:hover,
+        .filter-option:focus {
+            background: rgba(247,105,2,0.1);
+            outline: none;
         }
 
         .search-note {
@@ -272,17 +345,18 @@
             }
         }
     </style>
+    <script defer src="theme.js"></script>
 </head>
 <body>
     <nav>
         <a href="index.html">Home</a>
-        <a href="team.html" class="github-link">Our Team</a>
+        <a href="team.html" class="github-link" aria-current="page">Our Team</a>
         <a href="research.html">Research</a>
         <a href="publications.html">Publications</a>
         <a href="news.html">News</a>
         <a href="join.html">Join Us</a>
         <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
-        <button id="theme-btn" class="theme-btn" aria-label="Switch to light mode">🌙</button>
+        <button id="theme-btn" type="button" class="theme-btn" aria-label="Switch to dark mode">🌙</button>
     </nav>
 
     <main class="page-shell">
@@ -301,10 +375,20 @@
             <aside class="search-panel">
                 <label for="team-search" id="filter-label">Search</label>
                 <div class="search-row">
-                    <input id="team-search" type="search" placeholder="Search by name or role..." aria-label="Search team" />
-                    <button type="button">Filter</button>
+                    <input id="team-search" type="search" placeholder="Search by name, role, or type (PhD student, undergrad, masters)..." aria-label="Search team" />
+                    <div class="filter-group">
+                        <button type="button" id="filter-btn">Filter</button>
+                        <div class="filter-menu" id="filter-menu" aria-label="Filter options">
+                            <button type="button" class="filter-option" data-value="PhD student">PhD student</button>
+                            <button type="button" class="filter-option" data-value="Masters student">Masters student</button>
+                            <button type="button" class="filter-option" data-value="Undergrad">Undergrad</button>
+                            <button type="button" class="filter-option" data-value="Project Manager">Project Manager</button>
+                            <button type="button" class="filter-option" data-value="Research Scientist">Research Scientist</button>
+                            <button type="button" class="filter-option" data-value="Postdoctoral Fellow">Postdoctoral Fellow</button>
+                        </div>
+                    </div>
                 </div>
-                <p class="search-note" id="search-note">Search by name, role, or lab interest to narrow the team.</p>
+                <p class="search-note" id="search-note">Search by name, role, type, or lab interest (PhD student, undergrad, masters) to narrow the team.</p>
             </aside>
         </section>
 
@@ -312,7 +396,7 @@
             <div class="people-grid" id="people-grid">
                 <a class="person-card team-person-card" href="people/name1.html" data-name="name1" data-role="Principal Investigator">
                     <div class="person-photo">
-                        <img src="images/people/name1.svg" alt="name1">
+                        <img loading="lazy" src="images/people/name1.svg" alt="name1">
                         <div class="photo-overlay"><span>View profile</span></div>
                     </div>
                     <div class="person-meta">
@@ -322,7 +406,7 @@
                 </a>
                 <a class="person-card team-person-card" href="people/name2.html" data-name="name2" data-role="Project Manager">
                     <div class="person-photo">
-                        <img src="images/people/name2.svg" alt="name2">
+                        <img loading="lazy" src="images/people/name2.svg" alt="name2">
                         <div class="photo-overlay"><span>View profile</span></div>
                     </div>
                     <div class="person-meta">
@@ -332,7 +416,7 @@
                 </a>
                 <a class="person-card team-person-card" href="people/name3.html" data-name="name3" data-role="Postdoctoral Fellow">
                     <div class="person-photo">
-                        <img src="images/people/name3.svg" alt="name3">
+                        <img loading="lazy" src="images/people/name3.svg" alt="name3">
                         <div class="photo-overlay"><span>View profile</span></div>
                     </div>
                     <div class="person-meta">
@@ -342,7 +426,7 @@
                 </a>
                 <a class="person-card team-person-card" href="people/name4.html" data-name="name4" data-role="Research Scientist">
                     <div class="person-photo">
-                        <img src="images/people/name4.svg" alt="name4">
+                        <img loading="lazy" src="images/people/name4.svg" alt="name4">
                         <div class="photo-overlay"><span>View profile</span></div>
                     </div>
                     <div class="person-meta">
@@ -352,7 +436,7 @@
                 </a>
                 <a class="person-card team-person-card" href="people/name5.html" data-name="name5" data-role="Graduate Student">
                     <div class="person-photo">
-                        <img src="images/people/name5.svg" alt="name5">
+                        <img loading="lazy" src="images/people/name5.svg" alt="name5">
                         <div class="photo-overlay"><span>View profile</span></div>
                     </div>
                     <div class="person-meta">
@@ -362,7 +446,7 @@
                 </a>
                 <a class="person-card team-person-card" href="people/name6.html" data-name="name6" data-role="Research Engineer">
                     <div class="person-photo">
-                        <img src="images/people/name6.svg" alt="name6">
+                        <img loading="lazy" src="images/people/name6.svg" alt="name6">
                         <div class="photo-overlay"><span>View profile</span></div>
                     </div>
                     <div class="person-meta">
@@ -380,7 +464,7 @@
             <div class="people-grid">
                 <a class="person-card" href="https://example.com" target="_blank" rel="noopener">
                     <div class="person-photo">
-                        <img src="images/people/name1.svg" alt="Collaborator 1">
+                        <img loading="lazy" src="images/people/name1.svg" alt="Collaborator 1">
                         <div class="photo-overlay"><span>Visit website</span></div>
                     </div>
                     <div class="person-meta">
@@ -390,7 +474,7 @@
                 </a>
                 <a class="person-card" href="https://example.org" target="_blank" rel="noopener">
                     <div class="person-photo">
-                        <img src="images/people/name2.svg" alt="Collaborator 2">
+                        <img loading="lazy" src="images/people/name2.svg" alt="Collaborator 2">
                         <div class="photo-overlay"><span>Visit website</span></div>
                     </div>
                     <div class="person-meta">
@@ -400,7 +484,7 @@
                 </a>
                 <a class="person-card" href="https://example.net" target="_blank" rel="noopener">
                     <div class="person-photo">
-                        <img src="images/people/name3.svg" alt="Collaborator 3">
+                        <img loading="lazy" src="images/people/name3.svg" alt="Collaborator 3">
                         <div class="photo-overlay"><span>Visit website</span></div>
                     </div>
                     <div class="person-meta">
@@ -417,7 +501,8 @@
             <div class="people-grid">
                 <article class="person-card">
                     <div class="person-photo">
-                        <img src="images/people/name4.svg" alt="Past Member 1">
+                        <img loading="lazy" src="images/people/name4.svg" alt="Past Member 1">
+                        <div class="photo-overlay"><span>View details</span></div>
                     </div>
                     <div class="person-meta">
                         <h3>Past Member 1</h3>
@@ -427,7 +512,8 @@
                 </article>
                 <article class="person-card">
                     <div class="person-photo">
-                        <img src="images/people/name5.svg" alt="Past Member 2">
+                        <img loading="lazy" src="images/people/name5.svg" alt="Past Member 2">
+                        <div class="photo-overlay"><span>View details</span></div>
                     </div>
                     <div class="person-meta">
                         <h3>Past Member 2</h3>
@@ -437,7 +523,8 @@
                 </article>
                 <article class="person-card">
                     <div class="person-photo">
-                        <img src="images/people/name6.svg" alt="Past Member 3">
+                        <img loading="lazy" src="images/people/name6.svg" alt="Past Member 3">
+                        <div class="photo-overlay"><span>View details</span></div>
                     </div>
                     <div class="person-meta">
                         <h3>Past Member 3</h3>
@@ -450,9 +537,11 @@
     </main>
 
     <script>
-        const themeButton = document.getElementById('theme-btn');
         const searchInput = document.getElementById('team-search');
-        const cards = Array.from(document.querySelectorAll('.person-card'));
+        const filterButton = document.getElementById('filter-btn');
+        const filterMenu = document.getElementById('filter-menu');
+        const filterOptions = Array.from(document.querySelectorAll('.filter-option'));
+        const cards = Array.from(document.querySelectorAll('.person-card.team-person-card'));
         const noResults = document.getElementById('no-results');
         const contentMap = {
             hero_subtitle: 'hero-subtitle',
@@ -460,17 +549,6 @@
             filter_label: 'filter-label',
             search_note: 'search-note'
         };
-
-        function updateThemeButton() {
-            const isLight = document.body.classList.contains('light-mode');
-            themeButton.textContent = isLight ? '☀️' : '🌙';
-            themeButton.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            updateThemeButton();
-        }
 
         function parseContent(text) {
             const data = {};
@@ -518,16 +596,35 @@
             }
         }
 
-        themeButton.addEventListener('click', toggleTheme);
+        filterButton.addEventListener('click', () => {
+            filterMenu.classList.toggle('show');
+        });
+
+        filterOptions.forEach(button => {
+            button.addEventListener('click', () => {
+                searchInput.value = button.dataset.value;
+                filterTeam();
+                filterMenu.classList.remove('show');
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!filterMenu.contains(event.target) && event.target !== filterButton) {
+                filterMenu.classList.remove('show');
+            }
+        });
+
         searchInput.addEventListener('input', filterTeam);
         document.addEventListener('DOMContentLoaded', () => {
-            updateThemeButton();
             loadTeamText();
             filterTeam();
         });
     </script>
 </body>
 </html>
+
+
+
 
 
 

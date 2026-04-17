@@ -7,22 +7,24 @@
     <style>
         /* CSS Variables for Easy Light/Dark Toggling */
         :root {
-            /* Default Dark Mode Colors */
-            --bg-color: #111111;
-            --text-main: #ffffff;
-            --text-secondary: #cccccc;
+            --bg-color: #ffffff;
+            --text-main: #111111;
+            --text-secondary: #555555;
             --rit-orange: #F76902;
-            --nav-bg: #000000;
-            --border-color: #333333;
+            --nav-bg: #ffffff;
+            --nav-text: #111111;
+            --surface: #ffffff;
+            --border-color: #e5e7eb;
         }
 
-        /* Light Mode Colors (Applied when button is clicked) */
-        body.light-mode {
-            --bg-color: #ffffff;
-            --text-main: #222222;
-            --text-secondary: #555555;
-            --nav-bg: #f8f9fa;
-            --border-color: #e5e7eb;
+        body.dark-mode {
+            --bg-color: #111111;
+            --text-main: #f2f2f2;
+            --text-secondary: #bdbdbd;
+            --nav-bg: #000000;
+            --nav-text: #ffffff;
+            --surface: #1a1a1a;
+            --border-color: #333333;
         }
 
         body {
@@ -45,7 +47,7 @@
             transition: background-color 0.3s;
         }
         nav a {
-            color: var(--text-main);
+            color: var(--nav-text);
             text-decoration: none;
             font-weight: 500;
             text-transform: uppercase;
@@ -53,7 +55,8 @@
             font-size: 0.9rem;
             transition: color 0.2s;
         }
-        nav a:hover {
+        nav a:hover,
+        nav a[aria-current="page"] {
             color: var(--rit-orange);
         }
         .github-link {
@@ -134,18 +137,19 @@
             margin: 0; 
         }
     </style>
+    <script defer src="theme.js"></script>
 </head>
 <body>
 
     <nav>
-        <a href="index.html">Home</a>
+        <a href="index.html" aria-current="page">Home</a>
         <a href="team.html">Our Team</a>
         <a href="research.html">Research</a>
         <a href="publications.html">Publications</a>
         <a href="news.html">News</a>
         <a href="join.html">Join Us</a>
         <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
-        <button id="theme-btn" class="theme-btn" aria-label="Switch to light mode" onclick="toggleTheme()">🌙</button>
+        <button id="theme-btn" class="theme-btn" aria-label="Switch to dark mode">🌙</button>
     </nav>
 
     <div class="main-content">
@@ -164,18 +168,6 @@
     </div>
 
     <script>
-        function updateThemeButton() {
-            const button = document.getElementById('theme-btn');
-            const isLightMode = document.body.classList.contains('light-mode');
-            button.textContent = isLightMode ? '☀️' : '🌙';
-            button.setAttribute('aria-label', isLightMode ? 'Switch to dark mode' : 'Switch to light mode');
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            updateThemeButton();
-        }
-
         async function loadHomepageText() {
             try {
                 const response = await fetch('text_content/homepage.txt');
@@ -192,7 +184,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            updateThemeButton();
             loadHomepageText();
         });
     </script>

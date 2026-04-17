@@ -24,6 +24,41 @@
             min-height: 100vh;
         }
 
+        body.dark-mode {
+            background: #111111;
+            color: #f2f2f2;
+        }
+
+        body.dark-mode nav {
+            background: #111111;
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        body.dark-mode .hero-banner {
+            background: #111111;
+            color: #f2f2f2;
+        }
+
+        body.dark-mode .section-block,
+        body.dark-mode .position-image-card,
+        body.dark-mode .open-section,
+        body.dark-mode .open-card {
+            background: #1c1c1c;
+            border-color: rgba(255,255,255,0.08);
+            color: #e6e6e6;
+        }
+
+        body.dark-mode .position-icon {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        body.dark-mode .position-item p,
+        body.dark-mode .section-header p,
+        body.dark-mode .position-image-card .image-caption {
+            color: #c6c6c6;
+        }
+
         nav {
             display: flex;
             flex-wrap: wrap;
@@ -42,6 +77,14 @@
             font-weight: 600;
             letter-spacing: 0.7px;
             font-size: 0.92rem;
+        }
+
+        nav a[aria-current="page"] {
+            color: var(--accent);
+        }
+
+        nav a[aria-current="page"] {
+            color: var(--accent);
         }
 
         .github-link {
@@ -237,6 +280,7 @@
             }
         }
     </style>
+    <script defer src="theme.js"></script>
 </head>
 <body>
     <nav>
@@ -245,9 +289,9 @@
         <a href="research.html">Research</a>
         <a href="publications.html">Publications</a>
         <a href="news.html">News</a>
-        <a href="join.html" class="github-link">Join Us</a>
+        <a href="join.html" class="github-link" aria-current="page">Join Us</a>
         <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
-        <button id="theme-btn" class="theme-btn" aria-label="Switch to light mode">🌙</button>
+        <button id="theme-btn" class="theme-btn" aria-label="Switch to dark mode">🌙</button>
     </nav>
 
     <main class="page-shell">
@@ -300,7 +344,7 @@
 
                 <div class="position-image-card">
                     <div class="image-box">
-                        <img src="images/join_team.svg" alt="Join our amazing team illustration">
+                        <img loading="lazy" src="images/join_team.svg" alt="Join our amazing team illustration">
                     </div>
                     <div class="image-caption" id="position-image-caption">Join our amazing team!</div>
                 </div>
@@ -317,21 +361,21 @@
 
             <div class="open-cards">
                     <article class="open-card">
-                    <img src="images/open_position.svg" alt="Open position illustration">
+                    <img loading="lazy" src="images/open_position.svg" alt="Open position illustration">
                     <h3 id="open1-title"></h3>
                     <div class="meta" id="open1-meta"></div>
                     <p id="open1-desc"></p>
                 </article>
 
                 <article class="open-card">
-                    <img src="images/open_position.svg" alt="Open position illustration">
+                    <img loading="lazy" src="images/open_position.svg" alt="Open position illustration">
                     <h3 id="open2-title"></h3>
                     <div class="meta" id="open2-meta"></div>
                     <p id="open2-desc"></p>
                 </article>
 
                 <article class="open-card">
-                    <img src="images/open_position.svg" alt="Open position illustration">
+                    <img loading="lazy" src="images/open_position.svg" alt="Open position illustration">
                     <h3 id="open3-title"></h3>
                     <div class="meta" id="open3-meta"></div>
                     <p id="open3-desc"></p>
@@ -341,7 +385,6 @@
     </main>
 
     <script>
-        const themeButton = document.getElementById('theme-btn');
         const contentMap = {
             banner: 'banner-text',
             postdoc: 'postdoc-text',
@@ -360,17 +403,6 @@
             open3_desc: 'open3-desc',
             position_image_caption: 'position-image-caption'
         };
-
-        function updateThemeButton() {
-            const isLight = document.body.classList.contains('light-mode');
-            themeButton.textContent = isLight ? '☀️' : '🌙';
-            themeButton.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            updateThemeButton();
-        }
 
         function parseContent(text) {
             const data = {};
@@ -405,11 +437,10 @@
             }
         }
 
-        themeButton.addEventListener('click', toggleTheme);
-        document.addEventListener('DOMContentLoaded', () => {
-            updateThemeButton();
-            loadJoinText();
-        });
+        document.addEventListener('DOMContentLoaded', loadJoinText);
     </script>
 </body>
 </html>
+
+
+

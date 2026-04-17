@@ -6,6 +6,7 @@
     <title>name4 | Delta Neuro Lab</title>
     <style>
         :root {
+            --nav-text: #ffffff;
             --bg: #ffffff;
             --surface: #f7f7f7;
             --text: #111111;
@@ -21,9 +22,26 @@
             color: var(--text);
         }
 
-        body.light-mode {
-            background: #f8f8f8;
-            color: #111111;
+                body.dark-mode {
+            background: #111111;
+            color: #f2f2f2;
+        }
+
+        body.dark-mode nav {
+            background: #111111;
+        }
+
+        body.dark-mode .person-pane,
+        body.dark-mode .person-copy,
+        body.dark-mode .details {
+            background: #1c1c1c;
+            border-color: rgba(255,255,255,0.08);
+            color: #e5e5e5;
+        }
+
+        body.dark-mode .person-copy p,
+        body.dark-mode .details {
+            color: #c6c6c6;
         }
 
         nav {
@@ -39,11 +57,19 @@
 
         nav a,
         .theme-btn {
-            color: #ffffff;
+            color: var(--nav-text);
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 0.7px;
             font-size: 0.92rem;
+        }
+
+        nav a[aria-current="page"] {
+            color: var(--accent);
+        }
+
+        nav a[aria-current="page"] {
+            color: var(--accent);
         }
 
         .github-link {
@@ -124,11 +150,12 @@
             }
         }
     </style>
+    <script defer src="../theme.js"></script>
 </head>
 <body>
     <nav>
         <a href="../index.html">Home</a>
-        <a href="../team.html">Our Team</a>
+        <a href="../team.html" aria-current="page">Our Team</a>
         <a href="../research.html">Research</a>
         <a href="../publications.html">Publications</a>
         <a href="../news.html">News</a>
@@ -140,7 +167,7 @@
     <main class="page-shell">
         <div class="person-hero">
             <div class="person-pane">
-                <img src="../images/people/name4.svg" alt="name4" class="person-image">
+                <img loading="lazy" src="../images/people/name4.svg" alt="name4" class="person-image">
             </div>
             <div class="person-copy">
                 <h1 id="person-name">Loading...</h1>
@@ -152,19 +179,7 @@
     </main>
 
     <script>
-        const themeButton = document.getElementById('theme-btn');
         const contentFile = '../text_content/people/name4.txt';
-
-        function updateThemeButton() {
-            const isLight = document.body.classList.contains('light-mode');
-            themeButton.textContent = isLight ? '☀️' : '🌙';
-            themeButton.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            updateThemeButton();
-        }
 
         function parseContent(text) {
             return text.split('\n').reduce((acc, line) => {
@@ -195,14 +210,16 @@
             }
         }
 
-        themeButton.addEventListener('click', toggleTheme);
-        document.addEventListener('DOMContentLoaded', () => {
-            updateThemeButton();
-            loadPersonText();
-        });
+        document.addEventListener('DOMContentLoaded', loadPersonText);
     </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
