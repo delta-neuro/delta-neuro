@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elle Caston | Delta Neuro Lab</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --surface: #f7f7f7;
+            --text: #111111;
+            --muted: #4f4f4f;
+            --accent: #F76902;
+            --border: rgba(17,17,17,0.08);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        body.light-mode {
+            background: #f8f8f8;
+            color: #111111;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1rem;
+            background: #000000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav a,
+        .theme-btn {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.7px;
+            font-size: 0.92rem;
+        }
+
+        .github-link {
+            color: var(--accent);
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 9999px;
+            padding: 0.55rem 0.95rem;
+            cursor: pointer;
+        }
+
+        .page-shell {
+            width: min(1100px, calc(100% - 2rem));
+            margin: 2rem auto 4rem;
+        }
+
+        .person-hero {
+            display: grid;
+            grid-template-columns: 380px minmax(0, 1fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .person-pane {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 22px 50px rgba(0,0,0,0.06);
+        }
+
+        .person-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .person-copy {
+            padding: 2rem;
+        }
+
+        .person-copy h1 {
+            margin: 0;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            line-height: 1.02;
+        }
+
+        .person-copy p.role {
+            margin: 0.75rem 0 1.5rem;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .person-copy p {
+            margin: 0 0 1rem;
+            color: var(--muted);
+            line-height: 1.85;
+        }
+
+        .person-copy .details {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        @media (max-width: 920px) {
+            .person-hero {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Our Team</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="join.html">Join Us</a>
+        <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
+        <button id="theme-btn" class="theme-btn" aria-label="Switch to light mode">🌙</button>
+    </nav>
+
+    <main class="page-shell">
+        <div class="person-hero">
+            <div class="person-pane">
+                <img src="images/elle_caston.svg" alt="Elle Caston" class="person-image">
+            </div>
+            <div class="person-copy">
+                <h1 id="person-name">Loading...</h1>
+                <p class="role" id="person-role"></p>
+                <p id="person-bio"></p>
+                <div class="details" id="person-details"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const themeButton = document.getElementById('theme-btn');
+        const contentFile = 'text_content/elle_caston.txt';
+
+        function updateThemeButton() {
+            const isLight = document.body.classList.contains('light-mode');
+            themeButton.textContent = isLight ? '☀️' : '🌙';
+            themeButton.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            updateThemeButton();
+        }
+
+        function parseContent(text) {
+            return text.split('\n').reduce((acc, line) => {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed.startsWith('#')) return acc;
+                const [key, ...rest] = trimmed.split('=');
+                if (!key) return acc;
+                acc[key.trim()] = rest.join('=').trim();
+                return acc;
+            }, {});
+        }
+
+        async function loadPersonText() {
+            try {
+                const response = await fetch(contentFile);
+                if (!response.ok) throw new Error('Text file not found');
+                const text = await response.text();
+                const data = parseContent(text);
+                document.title = `${data.name} | Delta Neuro Lab`;
+                document.getElementById('person-name').textContent = data.name || 'Name';
+                document.getElementById('person-role').textContent = data.role || '';
+                document.getElementById('person-bio').textContent = data.bio || '';
+                document.getElementById('person-details').textContent = data.details || '';
+            } catch (error) {
+                document.getElementById('person-name').textContent = 'Unable to load profile.';
+                document.getElementById('person-bio').textContent = 'Please make sure the file is available over HTTP or on GitHub Pages.';
+                console.error('Person load error:', error);
+            }
+        }
+
+        themeButton.addEventListener('click', toggleTheme);
+        document.addEventListener('DOMContentLoaded', () => {
+            updateThemeButton();
+            loadPersonText();
+        });
+    </script>
+</body>
+</html>

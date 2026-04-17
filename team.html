@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team | Delta Neuro Lab</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --surface: #f6f6f6;
+            --nav: #000000;
+            --text: #111111;
+            --muted: #4f4f4f;
+            --accent: #F76902;
+            --border: rgba(17,17,17,0.08);
+            --shadow: 0 16px 40px rgba(0,0,0,0.08);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        body.light-mode {
+            background: #f8f8f8;
+            color: #111111;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1rem;
+            background: var(--nav);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav a,
+        .theme-btn {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.7px;
+            font-size: 0.92rem;
+        }
+
+        .github-link {
+            color: var(--accent);
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 9999px;
+            padding: 0.55rem 0.95rem;
+            cursor: pointer;
+        }
+
+        .page-shell {
+            width: min(1200px, calc(100% - 2rem));
+            margin: 0 auto 4rem;
+            padding: 0;
+        }
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) 380px;
+            gap: 2rem;
+            align-items: center;
+            margin: 2rem auto 1.5rem;
+        }
+
+        .hero-copy .eyebrow {
+            margin: 0 0 0.75rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+        }
+
+        .hero-copy h1 {
+            margin: 0;
+            font-size: clamp(3rem, 5vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-copy .hero-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0 1.5rem;
+            font-size: clamp(1.25rem, 2vw, 1.55rem);
+            font-weight: 700;
+        }
+
+        .hero-copy .hero-line .accent-divider {
+            color: var(--accent);
+            padding: 0 0.4rem;
+        }
+
+        .hero-copy p {
+            margin: 0;
+            max-width: 680px;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .search-panel {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .search-panel label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .search-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .search-row input {
+            width: 100%;
+            border: 1px solid rgba(17,17,17,0.12);
+            border-radius: 14px;
+            padding: 0.95rem 1rem;
+            font-size: 0.95rem;
+            color: var(--text);
+            outline: none;
+        }
+
+        .search-row button {
+            border: 1px solid rgba(17,17,17,0.12);
+            border-radius: 14px;
+            background: var(--bg);
+            padding: 0.95rem 1.25rem;
+            color: var(--text);
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .search-note {
+            margin-top: 0.9rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .grid-section {
+            margin-top: 2rem;
+        }
+
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .person-card {
+            display: block;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .person-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 50px rgba(0,0,0,0.14);
+        }
+
+        .person-photo {
+            position: relative;
+            width: 100%;
+            height: 340px;
+            overflow: hidden;
+        }
+
+        .person-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.42) 100%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            display: grid;
+            place-items: end center;
+            padding-bottom: 1.25rem;
+        }
+
+        .person-card:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-overlay span {
+            background: rgba(255,255,255,0.9);
+            color: #111111;
+            padding: 0.65rem 1rem;
+            border-radius: 999px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .person-meta {
+            padding: 1.25rem 1.3rem 1.5rem;
+        }
+
+        .person-meta h3 {
+            margin: 0 0 0.35rem;
+            font-size: 1.1rem;
+        }
+
+        .person-meta p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .no-results {
+            display: none;
+            margin-top: 1rem;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 920px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html" class="github-link">Our Team</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="join.html">Join Us</a>
+        <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
+        <button id="theme-btn" class="theme-btn" aria-label="Switch to light mode">🌙</button>
+    </nav>
+
+    <main class="page-shell">
+        <section class="hero-section">
+            <div class="hero-copy">
+                <p class="eyebrow">say hello to</p>
+                <h1>OUR LAB</h1>
+                <div class="hero-line">
+                    <span>MOTIVATED</span>
+                    <span class="accent-divider">|</span>
+                    <span>PASSIONATE SCIENTISTS</span>
+                </div>
+                <p id="hero-subtitle">Loading team content...</p>
+            </div>
+
+            <aside class="search-panel">
+                <label for="team-search" id="filter-label">Search</label>
+                <div class="search-row">
+                    <input id="team-search" type="search" placeholder="Search by name or role..." aria-label="Search team" />
+                    <button type="button">Filter</button>
+                </div>
+                <p class="search-note" id="search-note">Search by name, role, or lab interest to narrow the team.</p>
+            </aside>
+        </section>
+
+        <section class="grid-section">
+            <div class="people-grid" id="people-grid">
+                <a class="person-card" href="tatiana_segura.html" data-name="Tatiana Segura" data-role="Principal Investigator">
+                    <div class="person-photo">
+                        <img src="images/tatiana_segura.svg" alt="Tatiana Segura">
+                        <div class="photo-overlay"><span>View profile</span></div>
+                    </div>
+                    <div class="person-meta">
+                        <h3>Tatiana Segura</h3>
+                        <p>Principal Investigator</p>
+                    </div>
+                </a>
+                <a class="person-card" href="lindsay_riley.html" data-name="Lindsay Riley" data-role="Project Manager">
+                    <div class="person-photo">
+                        <img src="images/lindsay_riley.svg" alt="Lindsay Riley">
+                        <div class="photo-overlay"><span>View profile</span></div>
+                    </div>
+                    <div class="person-meta">
+                        <h3>Lindsay Riley, PhD</h3>
+                        <p>Project Manager</p>
+                    </div>
+                </a>
+                <a class="person-card" href="cara_smith.html" data-name="Cara Smith" data-role="Postdoctoral Fellow">
+                    <div class="person-photo">
+                        <img src="images/cara_smith.svg" alt="Cara Smith">
+                        <div class="photo-overlay"><span>View profile</span></div>
+                    </div>
+                    <div class="person-meta">
+                        <h3>Cara Smith, PhD</h3>
+                        <p>Postdoctoral Fellow</p>
+                    </div>
+                </a>
+                <a class="person-card" href="andrea_jones.html" data-name="Andrea Jones" data-role="Research Scientist">
+                    <div class="person-photo">
+                        <img src="images/andrea_jones.svg" alt="Andrea Jones">
+                        <div class="photo-overlay"><span>View profile</span></div>
+                    </div>
+                    <div class="person-meta">
+                        <h3>Andrea Jones, PhD</h3>
+                        <p>Research Scientist</p>
+                    </div>
+                </a>
+                <a class="person-card" href="elle_caston.html" data-name="Elle Caston" data-role="Graduate Student">
+                    <div class="person-photo">
+                        <img src="images/elle_caston.svg" alt="Elle Caston">
+                        <div class="photo-overlay"><span>View profile</span></div>
+                    </div>
+                    <div class="person-meta">
+                        <h3>Elle Caston</h3>
+                        <p>Graduate Student</p>
+                    </div>
+                </a>
+                <a class="person-card" href="alejandra_suarez_arnedo.html" data-name="Alejandra Suarez-Arnedo" data-role="Research Engineer">
+                    <div class="person-photo">
+                        <img src="images/alejandra_suarez_arnedo.svg" alt="Alejandra Suarez-Arnedo">
+                        <div class="photo-overlay"><span>View profile</span></div>
+                    </div>
+                    <div class="person-meta">
+                        <h3>Alejandra Suarez-Arnedo, MS</h3>
+                        <p>Research Engineer</p>
+                    </div>
+                </a>
+            </div>
+            <p class="no-results" id="no-results">No team members match that search.</p>
+        </section>
+    </main>
+
+    <script>
+        const themeButton = document.getElementById('theme-btn');
+        const searchInput = document.getElementById('team-search');
+        const cards = Array.from(document.querySelectorAll('.person-card'));
+        const noResults = document.getElementById('no-results');
+        const contentMap = {
+            hero_subtitle: 'hero-subtitle',
+            search_placeholder: 'team-search',
+            filter_label: 'filter-label',
+            search_note: 'search-note'
+        };
+
+        function updateThemeButton() {
+            const isLight = document.body.classList.contains('light-mode');
+            themeButton.textContent = isLight ? '☀️' : '🌙';
+            themeButton.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            updateThemeButton();
+        }
+
+        function parseContent(text) {
+            const data = {};
+            text.split('\n').forEach(line => {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed.startsWith('#')) return;
+                const [key, ...rest] = trimmed.split('=');
+                if (!key) return;
+                data[key.trim()] = rest.join('=').trim();
+            });
+            return data;
+        }
+
+        function filterTeam() {
+            const query = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const name = card.dataset.name.toLowerCase();
+                const role = card.dataset.role.toLowerCase();
+                const match = !query || name.includes(query) || role.includes(query);
+                card.style.display = match ? 'block' : 'none';
+                if (match) visibleCount += 1;
+            });
+            noResults.style.display = visibleCount ? 'none' : 'block';
+        }
+
+        async function loadTeamText() {
+            try {
+                const response = await fetch('text_content/team.txt');
+                if (!response.ok) throw new Error('Text file not found');
+                const text = await response.text();
+                const content = parseContent(text);
+                Object.entries(contentMap).forEach(([sourceKey, elementId]) => {
+                    const element = document.getElementById(elementId);
+                    if (!element) return;
+                    if (sourceKey === 'search_placeholder' && content[sourceKey]) {
+                        element.placeholder = content[sourceKey];
+                    } else if (content[sourceKey]) {
+                        element.textContent = content[sourceKey];
+                    }
+                });
+            } catch (error) {
+                document.getElementById('hero-subtitle').textContent = 'Unable to load page text.';
+                console.error('Team text load error:', error);
+            }
+        }
+
+        themeButton.addEventListener('click', toggleTheme);
+        searchInput.addEventListener('input', filterTeam);
+        document.addEventListener('DOMContentLoaded', () => {
+            updateThemeButton();
+            loadTeamText();
+            filterTeam();
+        });
+    </script>
+</body>
+</html>

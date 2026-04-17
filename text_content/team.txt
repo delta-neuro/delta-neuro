@@ -1,0 +1,4 @@
+hero_subtitle=Where science meets style. Hover over each image to peek into the lives of the incredible individuals who propel this lab.
+search_placeholder=Search by name or role...
+filter_label=Filter
+search_note=Search by name, role, or lab interest to narrow the team.

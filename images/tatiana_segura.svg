@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520">
+  <rect width="420" height="520" rx="32" fill="#111111" />
+  <circle cx="210" cy="180" r="85" fill="#F76902" opacity="0.95" />
+  <circle cx="210" cy="160" r="52" fill="#ffffff" opacity="0.95" />
+  <path d="M140 320c0-56 55-102 110-102s110 46 110 102v20H140v-20z" fill="#ffffff" opacity="0.12" />
+  <text x="50%" y="480" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="32" fill="#ffffff">Tatiana</text>
+</svg>

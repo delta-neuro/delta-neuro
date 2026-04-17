@@ -1,0 +1,4 @@
+name=Elle Caston
+role=Graduate Student
+bio=Elle contributes to neural modelling and lab experiments, blending computational methods with human-centered design. She brings curiosity and strong analytical strategy to the team.
+details=Office: Golisano Hall 5D | Email: elle.caston@rit.edu | Focus: brain signal processing, experimental protocols, and data-driven research.

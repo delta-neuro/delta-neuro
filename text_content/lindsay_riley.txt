@@ -1,0 +1,4 @@
+name=Lindsay Riley, PhD
+role=Project Manager
+bio=Lindsay coordinates complex research projects and keeps the lab running smoothly. She brings strong leadership, technical program management, and a passion for translating scientific discoveries into practical impact.
+details=Office: Golisano Hall 4B | Email: lindsay.riley@rit.edu | Focus: collaboration strategy, project delivery, and lab communications.

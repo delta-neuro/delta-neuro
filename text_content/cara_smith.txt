@@ -1,0 +1,4 @@
+name=Cara Smith, PhD
+role=Postdoctoral Fellow
+bio=Cara leads postdoctoral investigations into wearable sleep monitoring and AI-based biomarkers. She brings expertise in human electrophysiology and translational neuroengineering.
+details=Office: Golisano Hall 6C | Email: cara.smith@rit.edu | Focus: sleep science, signal processing, and human-centered neurotechnology.

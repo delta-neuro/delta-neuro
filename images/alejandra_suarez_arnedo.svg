@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520">
+  <rect width="420" height="520" rx="32" fill="#111111" />
+  <circle cx="210" cy="180" r="74" fill="#F76902" opacity="0.92" />
+  <circle cx="210" cy="170" r="44" fill="#ffffff" opacity="0.95" />
+  <path d="M150 360c0-56 58-102 110-102s110 46 110 102v24H150v-24z" fill="#ffffff" opacity="0.12" />
+  <text x="50%" y="480" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#ffffff">Alejandra</text>
+</svg>

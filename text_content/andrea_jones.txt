@@ -1,0 +1,4 @@
+name=Andrea Jones, PhD
+role=Research Scientist
+bio=Andrea develops analytical models for brain data and supports lab experimentation. Her work emphasizes reproducible science, computational pipelines, and human-centered neuroimaging.
+details=Office: Golisano Hall 4F | Email: andrea.jones@rit.edu | Focus: experimental design, data analysis, and translational research.
