@@ -1,0 +1,15 @@
+{
+  "category": "Conference Papers",
+  "title": "Clustering of interictal spikes by dynamic time warping and affinity propagation",
+  "url": null,
+  "venue": "IEEE ICASSP",
+  "notes": "2016, pp. 749753",
+  "authors": "J. Thomas, J. Jin, J. Dauwels, S. S. Cash, M. B. Westover",
+  "year": 2016,
+  "keywords": "conference 2016 interictal spikes clustering dynamic time warping affinity propagation",
+  "id": "conference-2016-clustering-interictal-spikes",
+  "status": "Published",
+  "abstract": "Abstract unavailable. Add a short summary here.",
+  "doi": null,
+  "type": "Conference Paper"
+}

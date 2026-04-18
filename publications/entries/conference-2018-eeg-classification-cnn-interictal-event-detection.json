@@ -1,0 +1,15 @@
+{
+  "category": "Conference Papers",
+  "title": "EEG classification via convolutional neural network-based interictal epileptiform event detection",
+  "url": null,
+  "venue": "IEEE EMBC",
+  "notes": "2018, pp. 31483151",
+  "authors": "J. Thomas, L. Comoretto, J. Jin, J. Dauwels, S. S. Cash, M. B. Westover",
+  "year": 2018,
+  "keywords": "conference 2018 EEG classification CNN interictal event detection",
+  "id": "conference-2018-eeg-classification-cnn-interictal-event-detection",
+  "status": "Published",
+  "abstract": "Abstract unavailable. Add a short summary here.",
+  "doi": null,
+  "type": "Conference Paper"
+}

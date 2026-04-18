@@ -1,0 +1,15 @@
+{
+  "category": "Lead Author Journal Publications",
+  "title": "Automated detection of interictal epileptiform discharges from scalp electroencephalograms by convolutional neural networks",
+  "url": "https://doi.org/10.1142/S0129065720500306",
+  "venue": "International Journal of Neural Systems",
+  "notes": "vol. 30, no. 11, p. 2050030, 2020",
+  "authors": "J. Thomas, J. Jin, P. Thangavel, E. Bagheri, R. Yuvaraj, J. Dauwels, R. Rathakrishnan, J. J. Halford, S. S. Cash, B. Westover",
+  "year": 2020,
+  "keywords": "journal 2020 IED detection scalp EEG CNN",
+  "id": "journal-2020-automated-detection-ied",
+  "status": "Published",
+  "abstract": "Abstract unavailable. Add a short summary here.",
+  "doi": "10.1142/S0129065720500306",
+  "type": "Journal Article"
+}

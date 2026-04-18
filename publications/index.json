@@ -1,0 +1,340 @@
+{
+  "entries": [
+    {
+      "year": 2019,
+      "id": "patent-2019-slow-detection-artifact-removal",
+      "file": "entries/patent-2019-slow-detection-artifact-removal.json",
+      "category": "Patents and Technology Disclosures"
+    },
+    {
+      "year": 2023,
+      "id": "patent-2023-detection-slowing-patterns",
+      "file": "entries/patent-2023-detection-slowing-patterns.json",
+      "category": "Patents and Technology Disclosures"
+    },
+    {
+      "year": 2019,
+      "id": "patent-2019-epilepsy-diagnostic-system",
+      "file": "entries/patent-2019-epilepsy-diagnostic-system.json",
+      "category": "Patents and Technology Disclosures"
+    },
+    {
+      "year": 2024,
+      "id": "journal-2024-quantifying-epileptic-networks",
+      "file": "entries/journal-2024-quantifying-epileptic-networks.json",
+      "category": "Lead Author Journal Publications"
+    },
+    {
+      "year": 2024,
+      "id": "journal-2024-seizure-matching-system",
+      "file": "entries/journal-2024-seizure-matching-system.json",
+      "category": "Lead Author Journal Publications"
+    },
+    {
+      "year": 2024,
+      "id": "journal-2024-clinical-opinions-seizure-surgery",
+      "file": "entries/journal-2024-clinical-opinions-seizure-surgery.json",
+      "category": "Lead Author Journal Publications"
+    },
+    {
+      "year": 2023,
+      "id": "journal-2023-spikes-predict-surgery",
+      "file": "entries/journal-2023-spikes-predict-surgery.json",
+      "category": "Lead Author Journal Publications"
+    },
+    {
+      "year": 2022,
+      "id": "journal-2022-improving-automated-diagnosis",
+      "file": "entries/journal-2022-improving-automated-diagnosis.json",
+      "category": "Lead Author Journal Publications"
+    },
+    {
+      "year": 2021,
+      "id": "journal-2021-automated-adult-epilepsy-diagnostic-tool",
+      "file": "entries/journal-2021-automated-adult-epilepsy-diagnostic-tool.json",
+      "category": "Lead Author Journal Publications"
+    },
+    {
+      "year": 2020,
+      "id": "journal-2020-automated-detection-ied",
+      "file": "entries/journal-2020-automated-detection-ied.json",
+      "category": "Lead Author Journal Publications"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-hierarchical-integration-multimodal-clinical-data",
+      "file": "entries/review-2026-hierarchical-integration-multimodal-clinical-data.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-ai-applications-in-intracranial-eeg",
+      "file": "entries/review-2026-ai-applications-in-intracranial-eeg.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-time-frequency-representation-ee",
+      "file": "entries/review-2026-time-frequency-representation-ee.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-thalamic-interictal-events",
+      "file": "entries/review-2026-thalamic-interictal-events.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-preictal-period-quantification",
+      "file": "entries/review-2026-preictal-period-quantification.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-multi-paradigm-fusion-biometric-authentication",
+      "file": "entries/review-2026-multi-paradigm-fusion-biometric-authentication.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-sleep-fragmentation-epileptic-activity",
+      "file": "entries/review-2026-sleep-fragmentation-epileptic-activity.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-thalamo-temporal-connectivity-signatures",
+      "file": "entries/review-2026-thalamo-temporal-connectivity-signatures.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-gamma-activity-criterion",
+      "file": "entries/review-2026-gamma-activity-criterion.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-emotional-drift-pattern-visualization",
+      "file": "entries/review-2026-emotional-drift-pattern-visualization.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-spectral-trajectory-sleep",
+      "file": "entries/review-2026-spectral-trajectory-sleep.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-spatial-characterization-40hz-assr",
+      "file": "entries/review-2026-spatial-characterization-40hz-assr.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-feature-normalization-biometric-authentication",
+      "file": "entries/review-2026-feature-normalization-biometric-authentication.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "review-2026-ocular-semiology-framework",
+      "file": "entries/review-2026-ocular-semiology-framework.json",
+      "category": "Publications under review"
+    },
+    {
+      "year": 2026,
+      "id": "journal-2026-thalamo-cortical-synchrony-seizure-expression",
+      "file": "entries/journal-2026-thalamo-cortical-synchrony-seizure-expression.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2026,
+      "id": "journal-2026-antiseizure-medication-taper",
+      "file": "entries/journal-2026-antiseizure-medication-taper.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2026,
+      "id": "journal-2026-maximizing-surgical-success-in-epilepsy",
+      "file": "entries/journal-2026-maximizing-surgical-success-in-epilepsy.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2025,
+      "id": "journal-2025-response-to-comment-pulsatile-corticoid-therapy",
+      "file": "entries/journal-2025-response-to-comment-pulsatile-corticoid-therapy.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2025,
+      "id": "journal-2025-reduction-interictal-epileptic-burden",
+      "file": "entries/journal-2025-reduction-interictal-epileptic-burden.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2025,
+      "id": "journal-2025-visual-features-stereo-eeg",
+      "file": "entries/journal-2025-visual-features-stereo-eeg.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2025,
+      "id": "journal-2025-widespread-decoupling-spindles-slow-waves",
+      "file": "entries/journal-2025-widespread-decoupling-spindles-slow-waves.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2024,
+      "id": "journal-2024-sleep-effects-ictal-interictal-networks",
+      "file": "entries/journal-2024-sleep-effects-ictal-interictal-networks.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2024,
+      "id": "journal-2024-pulsatile-corticoid-therapy",
+      "file": "entries/journal-2024-pulsatile-corticoid-therapy.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2024,
+      "id": "journal-2024-spatial-perturbation-framework",
+      "file": "entries/journal-2024-spatial-perturbation-framework.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2024,
+      "id": "journal-2024-spike-ripples-localize-epileptogenic-zone",
+      "file": "entries/journal-2024-spike-ripples-localize-epileptogenic-zone.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2024,
+      "id": "journal-2024-automated-seizure-type-classification",
+      "file": "entries/journal-2024-automated-seizure-type-classification.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2024,
+      "id": "journal-2024-oscillatory-nonoscillatory-sleep-biomarkers",
+      "file": "entries/journal-2024-oscillatory-nonoscillatory-sleep-biomarkers.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2023,
+      "id": "journal-2023-rem-sleep-ictal-interictal-dynamics",
+      "file": "entries/journal-2023-rem-sleep-ictal-interictal-dynamics.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2023,
+      "id": "journal-2023-scalp-hippocampal-sleep-memory",
+      "file": "entries/journal-2023-scalp-hippocampal-sleep-memory.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2023,
+      "id": "journal-2023-feature-extraction-emotion-recognition",
+      "file": "entries/journal-2023-feature-extraction-emotion-recognition.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2023,
+      "id": "journal-2023-cnn-transformer-belief-matching-seizure-detection",
+      "file": "entries/journal-2023-cnn-transformer-belief-matching-seizure-detection.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2023,
+      "id": "journal-2023-pre-ictal-interval-time-period",
+      "file": "entries/journal-2023-pre-ictal-interval-time-period.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2023,
+      "id": "journal-2023-targeted-density-electrode-placement",
+      "file": "entries/journal-2023-targeted-density-electrode-placement.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2021,
+      "id": "journal-2021-multi-center-validation-slowing-classification",
+      "file": "entries/journal-2021-multi-center-validation-slowing-classification.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2021,
+      "id": "journal-2021-time-frequency-decomposition-deep-learning",
+      "file": "entries/journal-2021-time-frequency-decomposition-deep-learning.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2021,
+      "id": "journal-2021-autism-fmri-functional-brain-connectivity",
+      "file": "entries/journal-2021-autism-fmri-functional-brain-connectivity.json",
+      "category": "Other Journal Publications"
+    },
+    {
+      "year": 2023,
+      "id": "conference-2023-eeg-biometric-authentication-feasibility-study",
+      "file": "entries/conference-2023-eeg-biometric-authentication-feasibility-study.json",
+      "category": "Conference Papers"
+    },
+    {
+      "year": 2023,
+      "id": "conference-2023-multiclass-seizure-type-classification",
+      "file": "entries/conference-2023-multiclass-seizure-type-classification.json",
+      "category": "Conference Papers"
+    },
+    {
+      "year": 2020,
+      "id": "conference-2020-deep-learning-interictal-spike-detection",
+      "file": "entries/conference-2020-deep-learning-interictal-spike-detection.json",
+      "category": "Conference Papers"
+    },
+    {
+      "year": 2018,
+      "id": "conference-2018-eeg-classification-cnn-interictal-event-detection",
+      "file": "entries/conference-2018-eeg-classification-cnn-interictal-event-detection.json",
+      "category": "Conference Papers"
+    },
+    {
+      "year": 2018,
+      "id": "conference-2018-deep-learning-seizure-detection",
+      "file": "entries/conference-2018-deep-learning-seizure-detection.json",
+      "category": "Conference Papers"
+    },
+    {
+      "year": 2017,
+      "id": "conference-2017-affinity-propagation-spike-detection",
+      "file": "entries/conference-2017-affinity-propagation-spike-detection.json",
+      "category": "Conference Papers"
+    },
+    {
+      "year": 2017,
+      "id": "conference-2017-deep-learning-bci-classification",
+      "file": "entries/conference-2017-deep-learning-bci-classification.json",
+      "category": "Conference Papers"
+    },
+    {
+      "year": 2016,
+      "id": "conference-2016-clustering-interictal-spikes",
+      "file": "entries/conference-2016-clustering-interictal-spikes.json",
+      "category": "Conference Papers"
+    },
+    {
+      "year": 2022,
+      "id": "bookchapter-2022-neonatal-seizure-detection-ee",
+      "file": "entries/bookchapter-2022-neonatal-seizure-detection-ee.json",
+      "category": "Book Chapters"
+    },
+    {
+      "year": 2022,
+      "id": "bookchapter-2022-epilepsy-diagnosis-monitoring",
+      "file": "entries/bookchapter-2022-epilepsy-diagnosis-monitoring.json",
+      "category": "Book Chapters"
+    }
+  ]
+}

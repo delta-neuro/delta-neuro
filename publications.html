@@ -231,10 +231,27 @@
             font-size: 0.88rem;
             color: var(--text-secondary);
         }
+        .entry-status {
+            margin: 0.35rem 0 0;
+            font-size: 0.92rem;
+            color: var(--rit-orange);
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
         .entry-subtext {
             margin: 0.35rem 0 0;
             font-size: 0.92rem;
             color: var(--text-secondary);
+        }
+        .entry-link {
+            margin-top: 0.7rem;
+        }
+        .entry-link a {
+            color: var(--rit-orange);
+            text-decoration: none;
+        }
+        .entry-link a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 980px) {
@@ -289,19 +306,7 @@
         <div class="layout">
             <aside class="timeline">
                 <h2>Year</h2>
-                <ul class="year-list">
-                    <li class="year-item">2026</li>
-                    <li class="year-item">2025</li>
-                    <li class="year-item">2024</li>
-                    <li class="year-item">2023</li>
-                    <li class="year-item">2022</li>
-                    <li class="year-item">2021</li>
-                    <li class="year-item">2020</li>
-                    <li class="year-item">2019</li>
-                    <li class="year-item">2018</li>
-                    <li class="year-item">2017</li>
-                    <li class="year-item">2016</li>
-                </ul>
+                <ul class="year-list" id="year-list"></ul>
             </aside>
 
             <section class="content">
@@ -311,53 +316,7 @@
                 </div>
 
                 <div class="entries" id="publication-list">
-                    <article class="entry" data-keywords="under review epilepsy journal">
-                        <span class="entry-tag">Under Review</span>
-                        <h2 class="entry-title"><span class="highlight">Thalamic Interictal Epileptic and Non-Epileptic Events during NREM Sleep in Patients with Focal Epilepsy</span></h2>
-                        <p class="entry-meta">Hongyi Ye, Kassem Jaber, Alyssa Ho, Lingqi Ye, and 14 more authors</p>
-                        <p class="entry-meta journal">Manuscript under review</p>
-                        <p class="entry-year">2025</p>
-                    </article>
-
-                    <article class="entry" data-keywords="under review epilepsy seizure journal">
-                        <span class="entry-tag">Under Review</span>
-                        <h2 class="entry-title"><span class="highlight">Thalamo-cortical Spectral Resonance Shapes Seizure Expression in Temporal Lobe Epilepsy</span></h2>
-                        <p class="entry-meta">Thandar* Aung, Jian Li, Tipakorn Tumrark, Chandana Belly, and 7 more authors</p>
-                        <p class="entry-meta journal">Under Review, 2025</p>
-                        <p class="entry-year">2025</p>
-                    </article>
-
-                    <article class="entry" data-keywords="case study epilepsy surgery journal">
-                        <span class="entry-tag">Epileptic Disorders</span>
-                        <h2 class="entry-title"><span class="highlight">Reduction of Interictal Epileptic Burden by Pulsatile Corticoid Therapy in Children with Drug-Resistant Epilepsy—How Stable is the Effect?</span></h2>
-                        <p class="entry-meta">Karin Schiller, Tali Avigdor, John* Thomas, Daniel Mansilla, and 6 more authors</p>
-                        <p class="entry-meta journal">Epileptic Disorders, 2025</p>
-                        <p class="entry-year">2025</p>
-                    </article>
-
-                    <article class="entry" data-keywords="journal epilepsy spindles slow waves">
-                        <span class="entry-tag">Epilepsia</span>
-                        <h2 class="entry-title"><span class="highlight">Widespread Decoupling of Spindles and Slow Waves in Temporal Lobe Epilepsy</span></h2>
-                        <p class="entry-meta">Karin Schiller, Nicolás Ellenrieder, Daniel Mansilla, Chifaou Abdallah, and 6 more authors</p>
-                        <p class="entry-meta journal">Epilepsia, 2025</p>
-                        <p class="entry-year">2025</p>
-                    </article>
-
-                    <article class="entry" data-keywords="journal annals neuroscience multicenter study">
-                        <span class="entry-tag">Annals of Neurology</span>
-                        <h2 class="entry-title"><span class="highlight">Visual Features in Stereo-Electroencephalography to Predict Surgical Outcome: A Multicenter Study</span></h2>
-                        <p class="entry-meta">Chifaou Abdallah, John* Thomas, Olivier Aron, Tali Avigdor, and 7 more authors</p>
-                        <p class="entry-meta journal">Annals of Neurology, 2025</p>
-                        <p class="entry-year">2025</p>
-                    </article>
-
-                    <article class="entry" data-keywords="journal neural engineering clinical decision epilepsy surgery">
-                        <span class="entry-tag">Journal of Neural Engineering</span>
-                        <h2 class="entry-title"><span class="highlight">Development of a Seizure Matching System for Clinical Decision Making in Epilepsy Surgery</span></h2>
-                        <p class="entry-meta">John* Thomas, Chifaou Abdallah, Kassem Jaber, Olivier Aron, and 7 more authors</p>
-                        <p class="entry-meta journal">Journal of Neural Engineering, 2024</p>
-                        <p class="entry-year">2024</p>
-                    </article>
+                    <div id="loading-message">Loading publications…</div>
                 </div>
             </section>
         </div>
@@ -391,21 +350,85 @@
             setTheme(isDark ? 'light' : 'dark');
         }
 
+        function createEntryCard(entry) {
+            const article = document.createElement('article');
+            article.className = 'entry';
+            const keywords = [
+                entry.keywords,
+                entry.title,
+                entry.authors,
+                entry.venue,
+                entry.notes,
+                entry.category,
+                entry.type
+            ].filter(Boolean).join(' ').toLowerCase();
+            article.dataset.keywords = keywords;
+
+            const noteText = entry.notes ? `, ${entry.notes}` : '';
+            const linkHtml = entry.url ? `<p class="entry-link"><a href="${entry.url}" target="_blank" rel="noopener">View publication</a></p>` : '';
+
+            article.innerHTML = `
+                <span class="entry-tag">${entry.type}</span>
+                <h2 class="entry-title"><span class="highlight">${entry.title}</span></h2>
+                <p class="entry-meta">${entry.authors}</p>
+                <p class="entry-meta journal">${entry.venue}${noteText}</p>
+                <p class="entry-status">${entry.status}</p>
+                <p class="entry-year">${entry.year} · ${entry.category}</p>
+                <p class="entry-subtext">${entry.abstract}</p>
+                ${linkHtml}
+            `;
+            return article;
+        }
+
+        function renderYearList(entries) {
+            const yearList = document.getElementById('year-list');
+            const years = [...new Set(entries.map(item => item.year))].sort((a, b) => b - a);
+            yearList.innerHTML = years.map((year, index) => `
+                <li class="year-item${index === 0 ? ' active' : ''}">${year}</li>
+            `).join('');
+        }
+
+        function filterEntries(entries) {
+            const filterInput = document.getElementById('filter-input');
+            const query = filterInput.value.trim().toLowerCase();
+            entries.forEach(entry => {
+                const keywords = entry.dataset.keywords.toLowerCase();
+                const title = entry.querySelector('.entry-title').textContent.toLowerCase();
+                const visible = !query || keywords.includes(query) || title.includes(query);
+                entry.style.display = visible ? 'grid' : 'none';
+            });
+        }
+
+        async function initPublications() {
+            const list = document.getElementById('publication-list');
+            const loading = document.getElementById('loading-message');
+            try {
+                const manifestResponse = await fetch('publications/index.json');
+                if (!manifestResponse.ok) throw new Error('Could not load publication manifest');
+                const manifest = await manifestResponse.json();
+                const entries = await Promise.all(manifest.entries.map(async item => {
+                    const entryResponse = await fetch(`publications/${item.file}`);
+                    if (!entryResponse.ok) throw new Error(`Could not load ${item.file}`);
+                    return entryResponse.json();
+                }));
+                entries.sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
+                renderYearList(entries);
+                list.innerHTML = '';
+                entries.forEach(entry => list.appendChild(createEntryCard(entry)));
+                const entryCards = Array.from(list.querySelectorAll('.entry'));
+                document.getElementById('filter-input').addEventListener('input', () => filterEntries(entryCards));
+            } catch (error) {
+                list.innerHTML = '<p class="error-message">Unable to load publications. Please serve this site from a web server or check the publications folder.</p>';
+                console.error(error);
+            } finally {
+                if (loading) loading.remove();
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             applyTheme(loadThemePreference());
             document.querySelectorAll('#theme-btn').forEach(button => button.addEventListener('click', toggleTheme));
-
-            const filterInput = document.getElementById('filter-input');
-            const entries = Array.from(document.querySelectorAll('.entry'));
-            filterInput.addEventListener('input', () => {
-                const query = filterInput.value.trim().toLowerCase();
-                entries.forEach(entry => {
-                    const keywords = entry.dataset.keywords.toLowerCase();
-                    const title = entry.querySelector('.entry-title').textContent.toLowerCase();
-                    const visible = !query || keywords.includes(query) || title.includes(query);
-                    entry.style.display = visible ? 'grid' : 'none';
-                });
-            });
+            initPublications();
         });
     </script>
 </body>

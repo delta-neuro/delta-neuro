@@ -1,0 +1,15 @@
+{
+  "category": "Conference Papers",
+  "title": "A deep learning scheme for automatic seizure detection from long-term scalp EEG",
+  "url": null,
+  "venue": "Asilomar Conference on Signals, Systems, and Computers",
+  "notes": "IEEE, 2018, pp. 368372",
+  "authors": "R. Yuvaraj, J. Thomas, T. Kluge, J. Dauwels",
+  "year": 2018,
+  "keywords": "conference 2018 seizure detection long-term scalp EEG deep learning",
+  "id": "conference-2018-deep-learning-seizure-detection",
+  "status": "Published",
+  "abstract": "Abstract unavailable. Add a short summary here.",
+  "doi": null,
+  "type": "Conference Paper"
+}
