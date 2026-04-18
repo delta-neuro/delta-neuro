@@ -173,8 +173,7 @@
         }
 
         .entries {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
             gap: 1.6rem;
         }
         .entry {
@@ -185,8 +184,6 @@
             border: 1px solid var(--border-color);
             border-radius: 1.1rem;
             transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-            flex: 0 0 25%;
-            box-sizing: border-box;
         }
         .entry:hover {
             border-color: rgba(247, 105, 2, 0.45);
