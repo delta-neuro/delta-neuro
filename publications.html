@@ -366,26 +366,26 @@
 
             let tagText = entry.status;
             if (entry.status === 'Published') {
-                tagText = `Published in ${entry.venue}`;
+                tagText = entry.venue;
             } else if (entry.status === 'Under Review') {
                 tagText = 'Under review';
+            } else if (entry.status === 'In Press') {
+                tagText = entry.venue;
             }
 
             const noteText = entry.notes ? `, ${entry.notes}` : '';
-            const venueText = (entry.status === 'Under Review' && entry.venue === 'In review') ? '' : entry.venue;
+            const venueText = (entry.status === 'Under Review' && entry.venue === 'In review') ? '' : (entry.status === 'In Press' ? entry.notes : entry.venue);
             const venueHtml = venueText || noteText ? `<p class="entry-meta journal">${venueText}${noteText}</p>` : '';
             const yearCategoryHtml = entry.status === 'Under Review' ? '' : `<p class="entry-year">${entry.year} · ${entry.category}</p>`;
             const abstractHtml = entry.status === 'Under Review' ? '' : `<p class="entry-subtext">${entry.abstract}</p>`;
             const linkHtml = entry.url ? `<p class="entry-link"><a href="${entry.url}" target="_blank" rel="noopener">View publication</a></p>` : '';
 
+            const authorsBold = entry.authors.replace(/J\. Thomas/g, '<strong>J. Thomas</strong>');
+
             article.innerHTML = `
                 <span class="entry-tag">${tagText}</span>
                 <h2 class="entry-title"><span class="highlight">${entry.title}</span></h2>
-                <p class="entry-meta">${entry.authors}</p>
-                ${venueHtml}
-                ${yearCategoryHtml}
-                ${abstractHtml}
-                ${linkHtml}
+                <p class="entry-meta">${authorsBold}</p>
             `;
             return article;
         }
