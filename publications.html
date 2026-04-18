@@ -374,6 +374,8 @@
             const noteText = entry.notes ? `, ${entry.notes}` : '';
             const venueText = (entry.status === 'Under Review' && entry.venue === 'In review') ? '' : entry.venue;
             const venueHtml = venueText || noteText ? `<p class="entry-meta journal">${venueText}${noteText}</p>` : '';
+            const yearCategoryHtml = entry.status === 'Under Review' ? '' : `<p class="entry-year">${entry.year} · ${entry.category}</p>`;
+            const abstractHtml = entry.status === 'Under Review' ? '' : `<p class="entry-subtext">${entry.abstract}</p>`;
             const linkHtml = entry.url ? `<p class="entry-link"><a href="${entry.url}" target="_blank" rel="noopener">View publication</a></p>` : '';
 
             article.innerHTML = `
@@ -381,8 +383,8 @@
                 <h2 class="entry-title"><span class="highlight">${entry.title}</span></h2>
                 <p class="entry-meta">${entry.authors}</p>
                 ${venueHtml}
-                <p class="entry-year">${entry.year} · ${entry.category}</p>
-                <p class="entry-subtext">${entry.abstract}</p>
+                ${yearCategoryHtml}
+                ${abstractHtml}
                 ${linkHtml}
             `;
             return article;
