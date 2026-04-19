@@ -8,64 +8,92 @@
     <style>
         /* CSS Variables for Easy Light/Dark Toggling */
         :root {
-            --bg-color: #ffffff;
-            --text-main: #111111;
-            --text-secondary: #555555;
-            --rit-orange: #F76902;
-            --nav-bg: #ffffff;
+            /* Standard Variables */
+            --bg: #ffffff;
+            --surface: #f6f6f6;
+            --nav: #ffffff;
             --nav-text: #111111;
-            --surface: #ffffff;
-            --border-color: #e5e7eb;
+            --text: #111111;
+            --muted: #555555;
+            --accent: #F76902;
+            --border: rgba(17,17,17,0.08);
+            --shadow: 0 16px 40px rgba(0,0,0,0.08);
+            
+            /* Legacy Aliases */
+            --bg-color: var(--bg);
+            --text-main: var(--text);
+            --text-secondary: var(--muted);
+            --rit-orange: var(--accent);
+            --nav-bg: var(--nav);
+            --border-color: var(--border);
+            --tag-bg: var(--accent);
+            --tag-text: #ffffff;
+            --highlight-bg: rgba(247, 105, 2, 0.14);
         }
 
         body.dark-mode {
-            --bg-color: #111111;
-            --text-main: #f2f2f2;
-            --text-secondary: #bdbdbd;
-            --nav-bg: #000000;
-            --nav-text: #ffffff;
+            --bg: #111111;
             --surface: #1a1a1a;
-            --border-color: #333333;
+            --nav: #000000;
+            --nav-text: #ffffff;
+            --text: #f2f2f2;
+            --muted: #aaaaaa;
+            --border: #333333;
+            --shadow: 0 16px 40px rgba(0,0,0,0.35);
+            --highlight-bg: rgba(247, 105, 2, 0.18);
         }
 
         body {
             margin: 0;
             font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            transition: background-color 0.3s, color 0.3s;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
         }
 
-        /* Classic Academic Navigation */
         nav {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            padding: 1.5rem;
-            gap: 2rem;
-            background-color: var(--nav-bg);
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.3s;
+            gap: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            background: var(--nav);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s;
         }
 
-        nav a {
+        nav a,
+        .theme-btn {
             color: var(--nav-text);
             text-decoration: none;
-            font-weight: 500;
-            text-transform: uppercase;
+            font-weight: 600;
             letter-spacing: 0.5px;
-            font-size: 0.9rem;
-            transition: color 0.2s;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            text-transform: none;
         }
 
         nav a:hover,
         nav a[aria-current="page"] {
-            color: var(--rit-orange);
+            color: var(--accent);
         }
 
         .github-link {
-            color: var(--rit-orange);
-            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            padding: 0.55rem 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .theme-btn:hover {
+            background: rgba(247,105,2,0.08);
         }
 
         .main-content {
