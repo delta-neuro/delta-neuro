@@ -1,0 +1,4 @@
+Image=https://placehold.co/400x250/111111/F76902?text=MICCAI+Poster
+Date=August 2025
+Title=MICCAI Poster
+Content=Test text

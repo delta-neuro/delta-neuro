@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article | Delta Neuro Lab</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --surface: #ffffff;
+            --nav: #000000;
+            --nav-text: #ffffff;
+            --text: #111111;
+            --muted: #555555;
+            --accent: #F76902;
+            --border: #e5e5e5;
+            --shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            --bg: #111111;
+            --surface: #1a1a1a;
+            --text: #f2f2f2;
+            --muted: #aaaaaa;
+            --nav: #000000;
+            --border: #333333;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1rem;
+            background: var(--nav);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav a, .theme-btn {
+            color: var(--nav-text);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.7px;
+            font-size: 0.92rem;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a[aria-current="page"] {
+            color: var(--accent);
+        }
+
+        .github-link { color: var(--accent); }
+
+        .theme-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 9999px;
+            padding: 0.55rem 0.95rem;
+            cursor: pointer;
+        }
+
+        /* Article Layout */
+        .article-container {
+            max-width: 900px;
+            margin: 4rem auto 6rem;
+            padding: 0 1.5rem;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .article-date {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 0 2rem;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 2.5rem;
+            background: var(--surface);
+        }
+
+        .article-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .article-content p {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Loading */
+        .loading-view {
+            text-align: center;
+            padding: 6rem 1rem;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(247,105,2,0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            nav { justify-content: space-between; gap: 0.75rem; padding: 1rem; }
+            nav a, .theme-btn { font-size: 0.8rem; }
+            .article-title { font-size: 2rem; }
+            .article-content { font-size: 1.05rem; }
+        }
+    </style>
+    <script defer src="theme.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Our Team</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="news.html" aria-current="page">News</a>
+        <a href="join.html">Join Us</a>
+        <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
+        <button id="theme-btn" type="button" class="theme-btn" aria-label="Switch to dark mode">🌙</button>
+    </nav>
+
+    <div class="loading-view" id="loading-view">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <article class="article-container" id="article-view" style="display: none;">
+        <a href="news.html" class="back-link">← Back to News</a>
+        <span class="article-date" id="article-date"></span>
+        <h1 class="article-title" id="article-title"></h1>
+        <img class="article-image" id="article-image" src="" alt="" style="display: none;">
+        <div class="article-content" id="article-content"></div>
+    </article>
+
+    <script>
+        function parseTextContent(text) {
+            const data = { Content: [] };
+            let isParsingContent = false;
+
+            text.split('\n').forEach(line => {
+                const trimmed = line.trim();
+                if (!trimmed) return;
+
+                if (isParsingContent) {
+                    data.Content.push(trimmed);
+                    return;
+                }
+
+                const separatorIndex = trimmed.indexOf('=');
+                if (separatorIndex > -1) {
+                    const key = trimmed.substring(0, separatorIndex).trim();
+                    const value = trimmed.substring(separatorIndex + 1).trim();
+                    if (key === 'Content') {
+                        isParsingContent = true;
+                        if (value) data.Content.push(value);
+                    } else {
+                        data[key] = value;
+                    }
+                } else if (trimmed.startsWith('Content')) {
+                    isParsingContent = true;
+                }
+            });
+            return data;
+        }
+
+        async function loadArticle() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            if (!id) {
+                document.getElementById('loading-view').innerHTML = '<p>No article ID specified in URL.</p><a href="news.html">Return to News</a>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`text_content/news/${id}.txt`);
+                if (!response.ok) throw new Error('Failed to load article');
+                
+                const text = await response.text();
+                const data = parseTextContent(text);
+
+                document.getElementById('article-title').textContent = data.Title || 'Untitled';
+                document.getElementById('article-date').textContent = data.Date || '';
+                
+                const imgEl = document.getElementById('article-image');
+                if (data.Image) {
+                    imgEl.src = data.Image;
+                    imgEl.alt = data.Title;
+                    imgEl.style.display = 'block';
+                }
+
+                const contentHtml = data.Content.map(p => `<p>${p}</p>`).join('');
+                document.getElementById('article-content').innerHTML = contentHtml || '<p>No content available.</p>';
+
+                document.title = `${data.Title || 'Article'} | Delta Neuro Lab`;
+
+                document.getElementById('loading-view').style.display = 'none';
+                document.getElementById('article-view').style.display = 'block';
+
+            } catch (error) {
+                console.error('Error loading article:', error);
+                const msg = window.location.protocol === 'file:' 
+                    ? 'Cannot load article locally. Use a local server.' 
+                    : `Could not load article '${id}'. Make sure text_content/news/${id}.txt exists.`;
+                document.getElementById('loading-view').innerHTML = `<p>${msg}</p><a href="news.html">Return to News</a>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadArticle);
+    </script>
+</body>
+</html>

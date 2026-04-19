@@ -1,0 +1,30 @@
+[
+  {
+    "id": "2026-msde-acceptance",
+    "year": 2026,
+    "date": "March 2026",
+    "title": "MSD&E Acceptance",
+    "summary": "Congratulations to Sumeet and the team in their adventure into the world of material design, in collaboration with the team of Dr. poornima padmanabha at RIT."
+  },
+  {
+    "id": "2026-iclr-acceptance",
+    "year": 2026,
+    "date": "March 2026",
+    "title": "ICLR 2026 Acceptance",
+    "summary": "Congratulations to Ruby for her ICLR 2026 work in a novel progressive residual generation approach to improve image generations when learning from data with feature correlations."
+  },
+  {
+    "id": "2025-miccai-presentation",
+    "year": 2025,
+    "date": "August 2025",
+    "title": "MICCAI Presentation",
+    "summary": "Congratulations to Kailong and Yubo for their MICCAI 2025 work on presenting an implicit neural network (INR) for improving unsupervised reconstruction of Positron Emission Tomography (PET) image."
+  },
+  {
+    "id": "2025-miccai-poster",
+    "year": 2025,
+    "date": "August 2025",
+    "title": "MICCAI Poster",
+    "summary": "Congratulations to Maryam for her MICCAI 2025 work on a novel meta-learning framework for learning patient-specific physics-informed neural networks for cardiac electrophysiology."
+  }
+]

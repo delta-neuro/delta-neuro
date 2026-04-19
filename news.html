@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab News | Delta Neuro Lab</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --surface: #ffffff;
+            --nav: #000000;
+            --nav-text: #ffffff;
+            --text: #111111;
+            --muted: #555555;
+            --accent: #F76902;
+            --border: #e5e5e5;
+            --shadow: 0 4px 12px rgba(0,0,0,0.06);
+            --card-bg: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            --bg: #111111;
+            --surface: #1a1a1a;
+            --text: #f2f2f2;
+            --muted: #aaaaaa;
+            --nav: #000000;
+            --border: #333333;
+            --shadow: 0 4px 12px rgba(0,0,0,0.5);
+            --card-bg: #1e1e1e;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1rem;
+            background: var(--nav);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav a, .theme-btn {
+            color: var(--nav-text);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.7px;
+            font-size: 0.92rem;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a[aria-current="page"] {
+            color: var(--accent);
+        }
+
+        .github-link {
+            color: var(--accent);
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 9999px;
+            padding: 0.55rem 0.95rem;
+            cursor: pointer;
+        }
+
+        /* Page Layout */
+        .page-header {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--accent);
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .news-container {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            width: min(1400px, calc(100% - 2rem));
+            margin: 0 auto 6rem;
+            align-items: start;
+        }
+
+        /* Year Wheel Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-right: 1px solid var(--border);
+            padding-right: 1rem;
+        }
+
+        .year-btn {
+            background: transparent;
+            border: none;
+            text-align: right;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 0.5rem;
+            font-family: inherit;
+        }
+
+        .year-btn:hover {
+            color: var(--accent);
+        }
+
+        .year-btn.active {
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .news-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .news-date {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+            background: var(--surface);
+        }
+
+        .news-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 0 0 0.75rem;
+            color: var(--text);
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 3px;
+            text-underline-offset: 4px;
+        }
+
+        .news-summary {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--muted);
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .view-all-container {
+            text-align: center;
+            margin-top: 3rem;
+            grid-column: 1 / -1;
+        }
+
+        .view-all-btn {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .view-all-btn:hover {
+            color: var(--accent);
+        }
+
+        .view-all-btn span {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Loading */
+        .loading-view {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 4rem;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(247,105,2,0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 1200px) {
+            .news-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .news-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+                flex-direction: row;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 1rem;
+                overflow-x: auto;
+            }
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .year-btn { text-align: center; }
+        }
+
+        @media (max-width: 600px) {
+            nav { justify-content: space-between; gap: 0.75rem; padding: 1rem; }
+            nav a, .theme-btn { font-size: 0.8rem; }
+            .news-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 2.2rem; }
+        }
+    </style>
+    <script defer src="theme.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Our Team</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="news.html" aria-current="page">News</a>
+        <a href="join.html">Join Us</a>
+        <a href="https://github.com/delta-neuro" target="_blank" class="github-link">GitHub ↗</a>
+        <button id="theme-btn" type="button" class="theme-btn" aria-label="Switch to dark mode">🌙</button>
+    </nav>
+
+    <div class="page-header">
+        <h1>Lab News</h1>
+    </div>
+
+    <div class="news-container">
+        <aside class="sidebar" id="sidebar-nav">
+            <!-- Year buttons injected via JS -->
+        </aside>
+
+        <main>
+            <div id="loading-view" class="loading-view">
+                <div class="loading-spinner"></div>
+            </div>
+            
+            <div id="news-grid" class="news-grid" style="display: none;">
+                <!-- News cards injected via JS -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const sidebarNav = document.getElementById('sidebar-nav');
+        const newsGrid = document.getElementById('news-grid');
+        const loadingView = document.getElementById('loading-view');
+        
+        let allNews = [];
+
+        function renderGrid(newsList) {
+            newsGrid.innerHTML = '';
+            
+            if (newsList.length === 0) {
+                newsGrid.innerHTML = '<p>No news found for this selection.</p>';
+                return;
+            }
+
+            newsList.forEach(item => {
+                const card = document.createElement('a');
+                card.className = 'news-card';
+                card.href = `news_article.html?id=${item.id}`;
+                
+                // Construct default image path based on id if we wanted, but we'll use a placeholder for the grid
+                // In a full implementation, the config.json would hold the image path too, 
+                // but we will use a generic placeholder or infer it.
+                // We'll use a fast generic placeholder, and the article page loads the real one.
+                const imgPath = `https://placehold.co/400x250/111111/F76902?text=${encodeURIComponent(item.title)}`;
+                
+                card.innerHTML = `
+                    <div class="news-date">${item.date}</div>
+                    <img src="${imgPath}" alt="${item.title}" class="news-image" loading="lazy">
+                    <h3 class="news-title">${item.title}</h3>
+                    <p class="news-summary">${item.summary}</p>
+                `;
+                newsGrid.appendChild(card);
+            });
+
+            // Add "View All News" button at the end
+            const viewAllWrap = document.createElement('div');
+            viewAllWrap.className = 'view-all-container';
+            const viewAllBtn = document.createElement('button');
+            viewAllBtn.className = 'view-all-btn';
+            viewAllBtn.innerHTML = 'View All News <span>></span>';
+            viewAllBtn.onclick = () => {
+                document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+                renderGrid(allNews);
+            };
+            viewAllWrap.appendChild(viewAllBtn);
+            newsGrid.appendChild(viewAllWrap);
+        }
+
+        async function initNewsPage() {
+            try {
+                const response = await fetch('text_content/news/config.json');
+                if (!response.ok) throw new Error('Config file not found');
+                
+                allNews = await response.json();
+                
+                // Extract unique years
+                const years = [...new Set(allNews.map(item => item.year))].sort((a, b) => b - a);
+
+                years.forEach((year, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'year-btn';
+                    btn.textContent = year;
+                    
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        
+                        // re-trigger animation
+                        newsGrid.style.animation = 'none';
+                        newsGrid.offsetHeight; 
+                        newsGrid.style.animation = 'fadeIn 0.4s ease forwards';
+                        
+                        const filtered = allNews.filter(n => n.year === year);
+                        renderGrid(filtered);
+                    });
+
+                    sidebarNav.appendChild(btn);
+
+                    // Load latest year by default
+                    if (index === 0) {
+                        btn.classList.add('active');
+                        renderGrid(allNews.filter(n => n.year === year));
+                    }
+                });
+
+                loadingView.style.display = 'none';
+                newsGrid.style.display = 'grid';
+
+            } catch (error) {
+                console.error('Initialization error:', error);
+                const message = window.location.protocol === 'file:'
+                    ? 'Unable to load config locally. Please use a local web server (e.g. python -m http.server).'
+                    : 'Unable to load news config. Please ensure text_content/news/config.json exists.';
+                loadingView.innerHTML = `<p>${message}</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initNewsPage);
+    </script>
+</body>
+</html>
