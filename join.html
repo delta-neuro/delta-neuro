@@ -225,6 +225,55 @@
             margin-top: 1rem;
             font-weight: 700;
             color: var(--text);
+            text-align: center;
+        }
+
+        .contact-links {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.85rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .contact-btn.email {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid rgba(17,17,17,0.15);
+        }
+
+        body.dark-mode .contact-btn.email {
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .contact-btn.email:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .contact-btn.forms {
+            background: var(--accent);
+            color: #ffffff;
+            border: 1px solid var(--accent);
+        }
+
+        .contact-btn.forms:hover {
+            background: #d95b00;
         }
 
         .open-section {
@@ -393,6 +442,14 @@
                         <img loading="lazy" src="images/join_team.svg" alt="Join our amazing team illustration">
                     </div>
                     <div class="image-caption" id="position-image-caption">Join our amazing team!</div>
+                    <div class="contact-links">
+                        <a href="mailto:lab@example.com" class="contact-btn email" id="contact-email-link">
+                            ✉️ <span id="contact-email-text">lab@example.com</span>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener" class="contact-btn forms" id="ms-forms-link">
+                            📝 Apply via MS Forms
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -447,6 +504,18 @@
                         element.textContent = content[sourceKey];
                     }
                 });
+
+                if (content.contact_email) {
+                    const emailEl = document.getElementById('contact-email-link');
+                    if (emailEl) emailEl.href = 'mailto:' + content.contact_email;
+                    const emailTextEl = document.getElementById('contact-email-text');
+                    if (emailTextEl) emailTextEl.textContent = content.contact_email;
+                }
+                
+                if (content.ms_forms_link) {
+                    const formEl = document.getElementById('ms-forms-link');
+                    if (formEl) formEl.href = content.ms_forms_link;
+                }
             } catch (error) {
                 const message = window.location.protocol === 'file:'
                     ? 'Unable to load text from local file. Please serve the page over HTTP or use a local server.'

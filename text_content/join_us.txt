@@ -14,3 +14,5 @@ open3_title=PhD Students
 open3_meta=RIT, In Person  Full-time
 open3_desc=Join our lab as a PhD student to lead research projects that bridge AI, neuroscience, and sleep dynamics.
 position_image_caption=Join our amazing team!
+contact_email=lab@example.com
+ms_forms_link=https://forms.office.com/
