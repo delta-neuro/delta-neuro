@@ -236,30 +236,60 @@
             to { transform: rotate(360deg); }
         }
 
-        @media (max-width: 1200px) {
-            .news-grid { grid-template-columns: repeat(3, 1fr); }
+        @media (max-width: 1024px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .news-container { width: 94%; }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.1rem 1rem;
+                gap: 1rem;
+            }
+            nav a, .theme-btn {
+                font-size: 0.85rem;
+            }
             .news-container {
                 grid-template-columns: 1fr;
+                width: 92%;
+                margin-top: 1rem;
             }
             .sidebar {
-                position: static;
+                position: sticky;
+                top: 0;
                 flex-direction: row;
                 border-right: none;
                 border-bottom: 1px solid var(--border);
-                padding-bottom: 1rem;
+                padding: 1rem 0;
                 overflow-x: auto;
+                background: var(--bg);
+                z-index: 5;
+                gap: 0.75rem;
+                -webkit-overflow-scrolling: touch;
             }
-            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .news-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 1.25rem;
+            }
             .year-btn { text-align: center; }
         }
 
-        @media (max-width: 600px) {
-            nav { justify-content: space-between; gap: 0.75rem; padding: 1rem; }
-            nav a, .theme-btn { font-size: 0.8rem; }
+        @media (max-width: 480px) {
+            nav {
+                gap: 0.85rem;
+                padding: 1rem 0.75rem;
+            }
+            nav a, .theme-btn {
+                font-size: 0.78rem;
+            }
+            .news-container {
+                width: 100%;
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
             .news-grid { grid-template-columns: 1fr; }
+            .news-image { height: 200px; }
+            .news-title { font-size: 1.2rem; }
         }
     </style>
     <script defer src="theme.js"></script>

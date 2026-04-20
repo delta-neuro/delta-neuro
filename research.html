@@ -213,20 +213,75 @@
             to { transform: rotate(360deg); }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
+            .research-container {
+                width: 94%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.1rem 1rem;
+                gap: 1rem;
+            }
+            nav a, .theme-btn {
+                font-size: 0.85rem;
+            }
             .research-container {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-top: 1rem;
+                width: 92%;
             }
             .sidebar {
-                position: static;
+                position: sticky;
+                top: 0;
                 flex-direction: row;
                 overflow-x: auto;
-                padding-bottom: 1rem;
+                padding: 1rem 0;
+                background: var(--bg);
+                z-index: 5;
                 border-bottom: 1px solid var(--border);
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+                -webkit-overflow-scrolling: touch;
             }
             .thrust-btn {
                 flex: 0 0 auto;
-                font-size: 1rem;
+                padding: 0.7rem 1.2rem;
+                font-size: 0.95rem;
+                text-align: center;
+            }
+            .project-image {
+                height: 300px;
+            }
+            #project-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                gap: 0.85rem;
+                padding: 1rem 0.75rem;
+            }
+            nav a, .theme-btn {
+                font-size: 0.78rem;
+            }
+            .research-container {
+                width: 100%;
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+            .project-image {
+                height: 220px;
+                margin-bottom: 1.5rem;
+            }
+            #project-title {
+                font-size: 1.8rem;
+            }
+            .description-block {
+                font-size: 1.05rem;
             }
         }
     </style>
